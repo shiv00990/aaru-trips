@@ -10,7 +10,7 @@ const Contact = () => {
   setStatus('Sending...');
 
   try {
-    await fetch('https://script.google.com/macros/s/AKfycbxri_rGcjk8QThrS8_agXwfAtpWT7W-LSEAAR0bHc6JP9uU2W4UELRayqKjKNPagjM58A/exec', {
+    await fetch('https://script.google.com/macros/s/AKfycbz-oB7AXiqUZX6uwFH4oVAe3dJyOhsN-7_DA9A3NfBlc3HopyZuzlwyqBiNA0hmSkwkzQ/exec', {
       method: 'POST',
       mode: 'no-cors', // Important for Google Script
       body: JSON.stringify(formData),
