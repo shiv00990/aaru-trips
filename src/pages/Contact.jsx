@@ -5,12 +5,23 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', pkg: '', msg: '' });
   const [status, setStatus] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus('Sending to Aaru Trips...');
-    // Add your Google Apps Script URL in a fetch call here
-    setTimeout(() => setStatus('Success! We will call you soon.'), 1500);
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setStatus('Sending...');
+
+  try {
+    await fetch('https://script.google.com/macros/s/AKfycbxri_rGcjk8QThrS8_agXwfAtpWT7W-LSEAAR0bHc6JP9uU2W4UELRayqKjKNPagjM58A/exec', {
+      method: 'POST',
+      mode: 'no-cors', // Important for Google Script
+      body: JSON.stringify(formData),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    setStatus('Success! We will call you soon.');
+    setFormData({ name: '', email: '', phone: '', pkg: '', msg: '' });
+  } catch (err) {
+    setStatus('Error sending message.');
+  }
+};
 
   return (
     <div className="py-20 bg-cream min-h-screen">
