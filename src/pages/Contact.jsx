@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { Send, Phone, Mail, MapPin } from 'lucide-react';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', pkg: '', msg: '' });
+  const [formData, setFormData] = useState({
+  name: '',
+  email: '',
+  phone: '',
+  journeyDate: '', 
+  msg: ''
+});
   const [status, setStatus] = useState('');
 
   const handleSubmit = async (e) => {
@@ -42,6 +48,16 @@ const Contact = () => {
           <input required type="text" placeholder="Your Name" className="w-full p-4 bg-cream/50 rounded-xl outline-none focus:ring-2 focus:ring-gold" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
           <input required type="email" placeholder="Email Address" className="w-full p-4 bg-cream/50 rounded-xl outline-none focus:ring-2 focus:ring-gold" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
           <input required type="tel" placeholder="Phone Number" className="w-full p-4 bg-cream/50 rounded-xl outline-none focus:ring-2 focus:ring-gold" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
+          <div className="space-y-2">
+  <label className="text-[10px] uppercase font-bold text-plum/50 ml-2">Planned Journey Date</label>
+  <input
+    type="date"
+    required
+    value={formData.journeyDate}
+    onChange={(e) => setFormData({...formData, journeyDate: e.target.value})}
+    className="w-full p-4 rounded-2xl bg-cream border border-gold/10 focus:outline-none focus:border-gold text-plum"
+  />
+</div>
           <textarea placeholder="Tell us about your dream destination..." className="w-full p-4 bg-cream/50 rounded-xl outline-none h-32" value={formData.msg} onChange={e => setFormData({...formData, msg: e.target.value})}></textarea>
           <button className="w-full bg-plum text-gold font-bold py-5 rounded-xl hover:bg-gold hover:text-plum transition uppercase tracking-widest flex justify-center gap-2">
             <Send size={20}/> Submit Inquiry

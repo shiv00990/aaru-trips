@@ -53,25 +53,62 @@ const Home = () => {
   return (
     <div className="bg-cream overflow-x-hidden">
       
-      {/* 1. HERO SLIDER SECTION */}
-      <section className="relative h-[80vh] overflow-hidden bg-plum">
-        <AnimatePresence mode="wait">
-          <motion.div key={currentSlide} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }} className="absolute inset-0">
-            <div className="absolute inset-0 bg-black/40 z-10" />
-            <img src={slides[currentSlide].url} className="w-full h-full object-cover" alt="Slide" />
-          </motion.div>
-        </AnimatePresence>
-        <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4 text-cream">
-          <motion.h2 
-            initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-            className="text-5xl md:text-7xl font-bold mb-4"
-          >
-            {slides[currentSlide].title}
-          </motion.h2>
-          <p className="text-gold font-bold tracking-widest uppercase mb-8">{slides[currentSlide].subtitle}</p>
-          <Link to="/contact" className="bg-gold text-plum px-10 py-4 rounded-full font-extrabold hover:scale-110 transition shadow-2xl">Book Now</Link>
-        </div>
-      </section>
+      {/* 1. UPGRADED HERO SLIDER SECTION */}
+<section className="relative h-[85vh] md:h-[90vh] overflow-hidden bg-plum border-b-8 border-gold">
+  <AnimatePresence mode="wait">
+    <motion.div 
+      key={currentSlide} 
+      initial={{ opacity: 0, scale: 1.1 }} 
+      animate={{ opacity: 1, scale: 1 }} 
+      exit={{ opacity: 0 }} 
+      transition={{ duration: 1.5 }} 
+      className="absolute inset-0"
+    >
+      {/* High-contrast overlay to make the Gold text pop */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-plum/80 z-10" />
+      <img src={slides[currentSlide].url} className="w-full h-full object-cover" alt="Slide" />
+    </motion.div>
+  </AnimatePresence>
+
+  <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4">
+    {/* Subtitle - Matching the About Page style */}
+    <motion.p 
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      className="text-white font-bold tracking-[0.4em] uppercase mb-4 text-xs md:text-sm border-y border-gold/30 py-2 px-6 inline-block"
+    >
+      {slides[currentSlide].subtitle}
+    </motion.p>
+
+    {/* Main Headline - Using the High-Intensity Gold */}
+    <motion.h2 
+      initial={{ scale: 0.9, opacity: 0 }} 
+      animate={{ scale: 1, opacity: 1 }}
+      className="text-6xl md:text-9xl font-black text-[#FBBF24] italic uppercase tracking-tighter drop-shadow-2xl mb-8"
+    >
+      {slides[currentSlide].title}
+    </motion.h2>
+
+    {/* Call to Action */}
+    <motion.div
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.5 }}
+    >
+      <Link 
+        to="/contact" 
+        className="bg-[#FBBF24] text-plum px-12 py-5 rounded-full font-black uppercase tracking-widest hover:scale-110 hover:bg-white transition-all shadow-[0_0_30px_rgba(251,191,36,0.4)]"
+      >
+        Plan My Trip
+      </Link>
+    </motion.div>
+
+    {/* Animated Scroll Indicator */}
+    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gold animate-bounce opacity-50">
+      <ChevronRight size={32} className="rotate-90" />
+    </div>
+  </div>
+</section>
 
       {/* 2. OUR MISSION / PHILOSOPHY SECTION */}
       <section className="py-20 bg-white">
@@ -144,42 +181,68 @@ const Home = () => {
   </div>
 </section>
 
-      {/* 4. TOP DESTINATIONS GRID */}
-      <section className="py-24 bg-white border-t border-gold/10">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-end mb-12 border-b-2 border-gold pb-4">
-            <h3 className="text-4xl font-extrabold text-plum uppercase italic tracking-tighter">
-              Top <span className="text-gold">Destinations</span>
-            </h3>
-            <Link to="/packages" className="text-plum text-sm font-bold flex items-center gap-1 hover:text-gold transition">
-              View All Packages <ChevronRight size={16}/>
-            </Link>
+      {/* --- CATEGORIZED PACKAGE SWIPER --- */}
+<section className="py-24 bg-white overflow-hidden">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-sm">Curated Experiences</h4>
+      <h2 className="text-4xl md:text-5xl font-black text-plum italic uppercase">Explore <span className="text-gold font-black">Categories</span></h2>
+    </div>
+
+    {/* Category Loops */}
+    {['International', 'Domestic', 'Spiritual'].map((category) => (
+      <div key={category} className="mb-20 last:mb-0">
+        {/* Category Header */}
+        <div className="flex justify-between items-end mb-8 px-2 border-l-4 border-gold pl-6">
+          <div>
+            <h3 className="text-2xl font-black text-plum uppercase tracking-tighter">{category}</h3>
+            <p className="text-gray-400 text-sm font-medium uppercase tracking-widest">Handpicked {category} Escapes</p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {allPackages.map((pkg, idx) => (
-              <motion.div whileHover={{ y: -5 }} key={idx} className="bg-white rounded-[2.5rem] overflow-hidden flex flex-col h-full shadow-2xl border border-gold/5">
-                <div className="h-60 relative">
-                  <img src={pkg.img} className="w-full h-full object-cover" alt={pkg.title} />
-                  <div className="absolute top-4 left-4 bg-plum/90 backdrop-blur-md text-gold px-4 py-1 rounded-full text-[10px] font-bold uppercase italic tracking-widest">
-                    {pkg.cat}
+          <div className="hidden md:flex gap-2 text-gold/30 text-xs font-bold uppercase italic">
+            Swipe to explore →
+          </div>
+        </div>
+
+        {/* Horizontal Swiper Queue */}
+        <div className="flex overflow-x-auto pb-8 gap-6 no-scrollbar snap-x snap-mandatory px-2">
+          {allPackages
+            .filter(pkg => pkg.cat === category)
+            .map((pkg, idx) => (
+              <motion.div 
+                key={idx} 
+                whileHover={{ y: -5 }}
+                className="min-w-[300px] md:min-w-[380px] snap-start bg-cream rounded-[2.5rem] overflow-hidden flex flex-col h-full shadow-lg border border-gold/5 group"
+              >
+                <div className="h-56 relative overflow-hidden">
+                  <img 
+                    src={pkg.img} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                    alt={pkg.title} 
+                  />
+                  <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md text-plum px-4 py-1 rounded-full text-[10px] font-black uppercase italic shadow-xl">
+                    {pkg.price}
                   </div>
                 </div>
-                <div className="p-8 flex flex-col flex-grow">
-                  <div className="flex justify-between text-[11px] font-bold text-gray-400 uppercase mb-3">
-                    <span className="flex items-center gap-1"><Clock size={14} className="text-gold"/> {pkg.dur}</span>
-                    <span className="text-gold text-lg">{pkg.price}</span>
+                
+                <div className="p-8">
+                  <div className="flex items-center gap-2 text-[10px] font-bold text-gold uppercase mb-3 tracking-widest">
+                    <Clock size={14}/> {pkg.dur}
                   </div>
-                  <h4 className="text-2xl font-bold text-plum mb-4">{pkg.title}</h4>
-                  <Link to="/packages" className="mt-auto text-plum font-bold border-b-2 border-gold w-fit text-sm hover:text-gold transition-colors">
-                    View Itinerary
+                  <h4 className="text-2xl font-bold text-plum mb-6 leading-tight">{pkg.title}</h4>
+                  <Link 
+                    to="/contact" 
+                    className="flex items-center gap-2 text-plum font-bold text-sm group-hover:gap-4 transition-all"
+                  >
+                    Check Availability <ChevronRight size={18} className="text-gold" />
                   </Link>
                 </div>
               </motion.div>
             ))}
-          </div>
         </div>
-      </section>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* 5. TESTIMONIALS SECTION (Social Proof) */}
       <section className="py-24 bg-cream">
