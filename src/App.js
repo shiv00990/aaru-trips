@@ -6,27 +6,50 @@ import { Phone, Mail, Instagram } from 'lucide-react';
 import Home from './pages/Home';
 import Packages from './pages/Packages';
 import Contact from './pages/Contact';
+import About from './pages/About';
 
 function App() {
   return (
     <Router>
       <div className="bg-cream min-h-screen text-plum flex flex-col">
         
-        {/* --- GLOBAL NAVIGATION --- */}
-        <nav className="bg-plum text-cream py-4 px-6 sticky top-0 z-50 shadow-xl border-b border-gold/30">
-          <div className="container mx-auto flex justify-between items-center">
-            <Link to="/" className="group">
-              <h1 className="text-xl md:text-2xl font-bold tracking-widest text-gold uppercase group-hover:scale-105 transition">Aaru Trips</h1>
-              <p className="text-[10px] uppercase tracking-widest text-cream/60">Divine Journey, Peaceful Experience</p>
-            </Link>
-            
-            <div className="hidden md:flex gap-8 items-center font-semibold text-sm uppercase">
-              <Link to="/" className="hover:text-gold transition">Home</Link>
-              <Link to="/packages" className="hover:text-gold transition">Tour Packages</Link>
-              <Link to="/contact" className="bg-gold text-plum px-5 py-2 rounded-full hover:bg-cream transition">Plan My Trip</Link>
-            </div>
-          </div>
-        </nav>
+  {/* --- GLOBAL NAVIGATION --- */}
+  <nav className="bg-plum text-cream py-4 px-6 sticky top-0 z-50 shadow-xl border-b border-gold/30">
+  <div className="container mx-auto flex justify-between items-center">
+    {/* Logo Side */}
+    <Link to="/" className="group flex items-center gap-3">
+      {/* If you have the logo image saved as logo.png in assets */}
+      {/* <img src={logo} alt="Logo" className="h-10 w-10 object-contain" /> */}
+      <div>
+        <h1 className="text-xl md:text-2xl font-bold tracking-widest text-gold uppercase group-hover:scale-105 transition">
+          Aaru Trips
+        </h1>
+        <p className="text-[10px] uppercase tracking-widest text-cream/60">
+          Divine Journey, Peaceful Experience
+        </p>
+      </div>
+    </Link>
+    
+    {/* Desktop Menu */}
+    <div className="hidden md:flex gap-8 items-center font-semibold text-sm uppercase tracking-wider">
+      <Link to="/" className="hover:text-gold transition-colors">Home</Link>
+      
+      {/* NEW ABOUT LINK */}
+      <Link to="/about" className="hover:text-gold transition-colors">About Us</Link>
+      
+      <Link to="/packages" className="hover:text-gold transition-colors">Tour Packages</Link>
+      
+      <Link to="/contact" className="bg-gold text-plum px-6 py-2 rounded-full hover:bg-cream hover:scale-105 transition-all shadow-lg">
+        Plan My Trip
+      </Link>
+    </div>
+
+    {/* Mobile Icon (Optional: Link to Contact for quick access on phones) */}
+    <Link to="/contact" className="md:hidden bg-gold text-plum p-2 rounded-full">
+      <Phone size={20} />
+    </Link>
+  </div>
+</nav>
 
         {/* --- PAGE CONTENT --- */}
         <main className="flex-grow">
@@ -34,6 +57,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/packages" element={<Packages />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </main>
 
