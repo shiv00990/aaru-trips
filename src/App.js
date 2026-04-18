@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Phone, Mail, Instagram } from 'lucide-react';
-
+import ScrollToTop from './pages/ScrollToTop';
 // Import your page components
 import Home from './pages/Home';
 import Packages from './pages/Packages';
@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <div className="bg-cream min-h-screen text-plum flex flex-col">
-        
+       <ScrollToTop /> 
   {/* --- GLOBAL NAVIGATION --- */}
   <nav className="bg-plum text-cream py-4 px-6 sticky top-0 z-50 shadow-xl border-b border-gold/30">
   <div className="container mx-auto flex justify-between items-center">
