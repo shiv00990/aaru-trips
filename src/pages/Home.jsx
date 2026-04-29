@@ -287,7 +287,7 @@ const Home = () => {
         </div>
 
         {/* --- CATEGORIZED PACKAGE SWIPER --- */}
-<div className="flex items-stretch overflow-x-auto pb-10 gap-4 no-scrollbar snap-x snap-mandatory px-4 overscroll-x-contain cursor-grab active:cursor-grabbing touch-pan-x select-none">
+<div className="flex items-stretch overflow-x-auto pb-10 gap-4 no-scrollbar snap-x snap-mandatory px-4 overscroll-x-contain cursor-grab active:cursor-grabbing touch-auto select-none">
   {allPackages
     .filter(pkg => pkg.cat === category)
     .map((pkg, idx) => (
