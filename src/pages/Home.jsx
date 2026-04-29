@@ -382,7 +382,7 @@ const Home = () => {
               <p className="text-cream/70 mb-8 max-w-md font-medium text-lg">Southern India's trusted travel partner. Connect with our regional experts instantly.</p>
               <div className="space-y-6">
                 <div className="flex items-center gap-4 text-2xl font-bold hover:text-gold transition"><MapPin className="text-gold" /> Chennai</div>
-                <div className="flex items-center gap-4 text-2xl font-bold hover:text-gold transition"><MapPin className="text-gold" /> Madurai</div>
+                <div className="flex items-center gap-4 text-2xl font-bold hover:text-gold transition"><MapPin className="text-gold" /> Bangalore</div>
               </div>
             </div>
             
