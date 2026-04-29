@@ -122,7 +122,7 @@ function App(){
                 +91 90870 60620
               </a>
               <p className="text-[10px] mt-4 opacity-50 uppercase tracking-tighter">
-                Head Office: [Your City, India]
+                Head Office: CHENNAI
               </p>
             </div>
           </div>
