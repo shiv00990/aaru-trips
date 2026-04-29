@@ -286,49 +286,52 @@ const Home = () => {
           </div>
         </div>
 
-        {/* FIXED WRAPPER:
-            1. Added 'items-stretch' so all cards have the same height.
-            2. Added 'touch-pan-x' to disable vertical "jiggling" during swipe.
-            3. Added 'select-none' so text isn't accidentally highlighted while dragging.
-        */}
-        <div className="flex items-stretch overflow-x-auto pb-8 gap-6 no-scrollbar snap-x snap-mandatory px-2 overscroll-x-contain cursor-grab active:cursor-grabbing touch-pan-x select-none">
-          {allPackages
-            .filter(pkg => pkg.cat === category)
-            .map((pkg, idx) => (
-              <div 
-                key={idx} 
-                /* REMOVED: all motion and y-axis transforms.
-                   FIXED: Added 'flex flex-col' with 'h-full' to ensure cards stay aligned.
-                */
-                className="min-w-[300px] md:min-w-[380px] snap-start bg-cream rounded-[2.5rem] overflow-hidden flex flex-col shadow-lg border border-gold/5 transition-all duration-300 hover:shadow-2xl"
-              >
-                <div className="h-56 relative overflow-hidden shrink-0">
-                  <img 
-                    src={pkg.img} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none" 
-                    alt={pkg.title} 
-                  />
-                  <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md text-plum px-4 py-1 rounded-full text-[10px] font-black uppercase italic shadow-xl">
-                    {pkg.price}
-                  </div>
-                </div>
-                
-                {/* flex-grow ensures the bottom area fills the card evenly */}
-                <div className="p-8 flex flex-col flex-grow">
-                  <div className="flex items-center gap-2 text-[10px] font-bold text-gold uppercase mb-3 tracking-widest">
-                    <Clock size={14}/> {pkg.dur}
-                  </div>
-                  <h4 className="text-2xl font-bold text-plum mb-6 leading-tight flex-grow">{pkg.title}</h4>
-                  <Link 
-                    to="/contact" 
-                    className="flex items-center gap-2 text-plum font-bold text-sm hover:gap-4 transition-all mt-auto"
-                  >
-                    Check Availability <ChevronRight size={18} className="text-gold" />
-                  </Link>
-                </div>
-              </div>
-            ))}
+        {/* --- CATEGORIZED PACKAGE SWIPER --- */}
+<div className="flex items-stretch overflow-x-auto pb-10 gap-4 no-scrollbar snap-x snap-mandatory px-4 overscroll-x-contain cursor-grab active:cursor-grabbing touch-pan-x select-none">
+  {allPackages
+    .filter(pkg => pkg.cat === category)
+    .map((pkg, idx) => (
+      <div 
+        key={idx} 
+        /* FIX 1: Changed min-w to [280px] for mobile (was 300px).
+           FIX 2: Added 'last:mr-8' to ensure the last card doesn't touch the edge.
+        */
+        className="min-w-[280px] md:min-w-[380px] snap-start bg-cream rounded-[2rem] overflow-hidden flex flex-col shadow-lg border border-gold/5 transition-all duration-300 hover:shadow-2xl mb-2"
+      >
+        {/* Slightly reduced image height for mobile */}
+        <div className="h-48 md:h-56 relative overflow-hidden shrink-0">
+          <img 
+            src={pkg.img} 
+            className="w-full h-full object-cover pointer-events-none" 
+            alt={pkg.title} 
+          />
+          <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md text-plum px-3 py-1 rounded-full text-[9px] font-black uppercase italic shadow-xl">
+            {pkg.price}
+          </div>
         </div>
+        
+        <div className="p-6 md:p-8 flex flex-col flex-grow">
+          <div className="flex items-center gap-2 text-[9px] font-bold text-gold uppercase mb-2 tracking-widest">
+            <Clock size={12}/> {pkg.dur}
+          </div>
+          <h4 className="text-xl md:text-2xl font-bold text-plum mb-4 leading-tight flex-grow">{pkg.title}</h4>
+          <Link 
+            to="/contact" 
+            className="flex items-center gap-2 text-plum font-bold text-xs hover:gap-4 transition-all mt-auto"
+          >
+            Check Availability <ChevronRight size={16} className="text-gold" />
+          </Link>
+        </div>
+      </div>
+    ))}
+</div>
+
+{/* --- VISUAL CUE: Swipe Indicator (Add this right below the swiper div) --- */}
+<div className="md:hidden flex justify-center gap-1 mt-[-20px] mb-10">
+   <div className="w-8 h-1 bg-gold rounded-full"></div>
+   <div className="w-2 h-1 bg-gold/30 rounded-full"></div>
+   <div className="w-1 h-1 bg-gold/20 rounded-full"></div>
+</div>
       </div>
     ))}
   </div>
