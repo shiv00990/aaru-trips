@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { Phone } from 'lucide-react';
+import { Phone, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ScrollToTop from './pages/ScrollToTop';
 import logocheck from './assets/logocheck.png';
 
@@ -15,6 +16,10 @@ import Privacy from './pages/Privacy';
 
 
 function App(){
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Add this
+
+  const closeMenu = () => setIsMenuOpen(false);
+
   const [scrolled, setScrolled] = React.useState(false);
   React.useEffect(() => {
   const handleScroll = () => {
@@ -45,7 +50,7 @@ function App(){
     {/* Clickable Email */}
     <a 
       href="mailto:Aarutripsandtravels6@gmail.com" 
-      className="hidden sm:flex items-center gap-1 hover:text-gold transition-colors"
+      className="flex items-center gap-1 hover:text-gold transition-colors"
     >
       ✉️ Aarutripsandtravels6@gmail.com
     </a>
@@ -75,9 +80,43 @@ function App(){
               </Link>
             </div>
 
-            <Link to="/contact" className="md:hidden bg-gold text-plum p-2 rounded-full">
-              <Phone size={20} />
-            </Link>
+            {/* MOBILE BUTTONS (Visible on Mobile only) */}
+    <div className="flex md:hidden items-center gap-3">
+      <Link to="/contact" className="bg-gold text-plum p-3 rounded-full shadow-lg">
+        <Phone size={20} />
+      </Link>
+      
+      {/* HAMBURGER / THREE DASHES BUTTON */}
+      <button 
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className="text-gold p-2 transition-transform active:scale-90"
+      >
+        {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
+      </button>
+    </div>
+
+    {/* MOBILE MENU OVERLAY (Slide Down) */}
+    <AnimatePresence>
+      {isMenuOpen && (
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="absolute top-full left-0 right-0 bg-plum border-b border-gold/30 flex flex-col p-8 gap-6 shadow-2xl md:hidden z-40"
+        >
+          <Link to="/" onClick={closeMenu} className="text-xl font-bold border-b border-white/5 pb-2">Home</Link>
+          <Link to="/about" onClick={closeMenu} className="text-xl font-bold border-b border-white/5 pb-2">About Us</Link>
+          <Link to="/packages" onClick={closeMenu} className="text-xl font-bold border-b border-white/5 pb-2">Tour Packages</Link>
+          <Link 
+            to="/contact" 
+            onClick={closeMenu}
+            className="bg-gold text-plum text-center py-4 rounded-2xl font-black uppercase tracking-widest mt-2"
+          >
+            Plan My Trip
+          </Link>
+        </motion.div>
+      )}
+    </AnimatePresence>
           </div>
         </nav>
 
