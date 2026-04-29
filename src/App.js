@@ -52,7 +52,10 @@ function App(){
       href="mailto:Aarutripsandtravels6@gmail.com" 
       className="flex items-center gap-1 hover:text-gold transition-colors"
     >
-      ✉️ Aarutripsandtravels6@gmail.com
+     <span>✉️</span>
+      {/* Hide the long email address on mobile, show only "Email" */}
+      <span className="hidden sm:inline">Aarutripsandtravels6@gmail.com</span>
+      <span className="sm:hidden uppercase">Email Us Now</span>
     </a>
   </div>
   
