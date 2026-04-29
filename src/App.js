@@ -2,10 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
 import ScrollToTop from './pages/ScrollToTop';
-
-import logo from './assets/logo.jpeg'; 
 import logocheck from './assets/logocheck.png';
-import logo2 from './assets/logo2.jpg'; 
 
 // Import your page components
 import Home from './pages/Home';
