@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Shield, Star, Globe, Plane, ChevronDown, Target, Award, Users, Landmark, Clock, 
+  Shield, Star, Globe, Plane, ChevronDown,ChevronRight, Target, Award, Users, Landmark, Clock, 
   Mail, MessageCircle, MapPin, Quote 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -227,6 +227,72 @@ const About = () => {
           </div>
         </div>
       </section>
+
+{/* --- THE AARU PHILOSOPHY SECTION --- */}
+<section className="py-24 bg-white">
+  <div className="container mx-auto px-4">
+    
+    {/* Header Section */}
+    <div className="text-center mb-16">
+      <h4 className="text-gold font-bold tracking-[0.3em] uppercase mb-6 text-[10px] md:text-xs">
+        The Aaru Philosophy
+      </h4>
+      <h2 className="text-4xl md:text-6xl font-black text-plum italic leading-tight uppercase tracking-tighter">
+        "Travel is not about where you go— <br className="hidden md:block" />
+        it’s about <span className="text-gold underline decoration-gold/20 underline-offset-8">what you feel</span>."
+      </h2>
+    </div>
+
+    {/* Content Grid */}
+    <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+      
+      {/* Left: Manifesto Text */}
+      <div className="md:w-3/5 space-y-8">
+        <div className="space-y-6 text-gray-500 font-medium leading-relaxed text-lg">
+          <p>
+            We understand that no two travelers are the same. Some seek peace, some seek adventure, some seek connection. 
+          </p>
+          <p>
+            That is why every journey we create is designed around you—your pace, your preferences, your story.
+          </p>
+          <p>
+            From serene spiritual yatras to vibrant international holidays, from intimate family getaways to carefully curated group experiences, we bring together comfort, detail, and personalization in every itinerary.
+          </p>
+        </div>
+        
+        <div className="pt-4">
+          <p className="text-plum font-black text-2xl italic border-l-4 border-gold pl-6">
+            At Aaru, we don’t believe in fixed packages. <br />
+            We believe in crafted experiences.
+          </p>
+        </div>
+      </div>
+
+      {/* Right: Focused Callout Box */}
+      <div className="md:w-2/5 w-full">
+        <div className="bg-plum p-10 md:p-12 rounded-[3rem] shadow-2xl relative overflow-hidden group">
+          {/* Subtle Decorative Circle */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-1000"></div>
+          
+          <h3 className="text-gold text-2xl md:text-3xl font-bold mb-6 italic leading-tight">
+            Crafted <br /> Experiences
+          </h3>
+          <p className="text-cream/80 text-sm md:text-base leading-relaxed mb-8">
+            Because in the end, travel is not just about the destination—it’s about what you remember and what you take back with you.
+          </p>
+          
+          <Link 
+            to="/contact" 
+            className="inline-flex items-center gap-2 text-gold font-black uppercase tracking-widest text-[10px] border-b border-gold pb-2 hover:gap-4 transition-all"
+          >
+            Start Your Story <ChevronRight size={14}/>
+          </Link>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* 8. OUR PRESENCE */}
       <section id="presence" className="py-24 text-center bg-cream">
