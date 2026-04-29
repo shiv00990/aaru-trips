@@ -8,7 +8,7 @@ module.exports = {
       colors: {
         gold: '#D4A122',
         cream: '#FFF5E1',
-        plum: '#4B2840',
+        plum: '#3c2335',
       },
     },
   },

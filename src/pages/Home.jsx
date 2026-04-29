@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {  X, Play } from 'lucide-react';
 import { 
   Shield, Star, Globe, Plane, ChevronRight, Clock, 
   Mail, MessageCircle, MapPin, Quote 
@@ -6,7 +7,7 @@ import {
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// 1. ASSET IMPORTS
+// ASSET IMPORTS
 import hero1 from '../assets/hero1.jpg';
 import hero2 from '../assets/hero2.png';
 import hero3 from '../assets/hero3.png';
@@ -23,6 +24,8 @@ import andamanImg from '../assets/bali2.jpg';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  // NEW: State to track which video is playing in the popup
+  const [activeVideo, setActiveVideo] = useState(null);
 
   const slides = [
     { url: hero1, title: "Tropical Paradises", subtitle: "Mauritius & Bali" },
@@ -53,21 +56,23 @@ const Home = () => {
   return (
     <div className="bg-cream overflow-x-hidden">
       
-      {/* 1. UPGRADED HERO SLIDER SECTION */}
-      <section className="relative h-[85vh] md:h-[90vh] overflow-hidden bg-plum border-b-8 border-gold">
-        <AnimatePresence mode="wait">
-          <motion.div 
-            key={currentSlide} 
-            initial={{ opacity: 0, scale: 1.1 }} 
-            animate={{ opacity: 1, scale: 1 }} 
-            exit={{ opacity: 0 }} 
-            transition={{ duration: 1.5 }} 
-            className="absolute inset-0"
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-plum/80 z-10" />
-            <img src={slides[currentSlide].url} className="w-full h-full object-cover" alt="Slide" />
-          </motion.div>
-        </AnimatePresence>
+      {/* HERO FIXED */}
+      <section className="relative h-[85vh] md:h-[90vh] bg-plum border-b-8 border-gold">
+        <div className="absolute inset-0 overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={currentSlide} 
+              initial={{ opacity: 0, scale: 1.1 }} 
+              animate={{ opacity: 1, scale: 1 }} 
+              exit={{ opacity: 0 }} 
+              transition={{ duration: 1.5 }} 
+              className="absolute inset-0"
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-plum/80 z-10" />
+              <img src={slides[currentSlide].url} className="w-full h-full object-cover" alt="Slide" />
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4">
           <motion.p 
@@ -77,7 +82,6 @@ const Home = () => {
           >
             {slides[currentSlide].subtitle}
           </motion.p>
-
           <motion.h2 
             initial={{ scale: 0.9, opacity: 0 }} 
             animate={{ scale: 1, opacity: 1 }}
@@ -85,25 +89,20 @@ const Home = () => {
           >
             {slides[currentSlide].title}
           </motion.h2>
-
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <Link 
-              to="/contact" 
-              className="bg-[#FBBF24] text-plum px-12 py-5 rounded-full font-black uppercase tracking-widest hover:scale-110 hover:bg-white transition-all shadow-[0_0_30px_rgba(251,191,36,0.4)]"
-            >
+          <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.5 }}>
+            <Link to="/contact" className="bg-[#FBBF24] text-plum px-12 py-5 rounded-full font-black uppercase tracking-widest hover:scale-110 hover:bg-white transition-all shadow-[0_0_30px_rgba(251,191,36,0.4)]">
               Plan My Trip
             </Link>
           </motion.div>
-
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gold animate-bounce opacity-50">
-            <ChevronRight size={32} className="rotate-90" />
-          </div>
         </div>
       </section>
+
+      {/* MISSION, WHY CHOOSE US, ABOUT (Removed for brevity as they remain unchanged) */}
+
+      {/* --- CATEGORIZED PACKAGE SWIPER (Unchanged) --- */}
+      {/* ... (Keep your existing Swiper code here) ... */}
+
+      
 
       {/* 2. OUR MISSION SECTION */}
       <section className="py-20 bg-white">
@@ -176,8 +175,99 @@ const Home = () => {
         </div>
       </section>
 
-     {/* --- CATEGORIZED PACKAGE SWIPER --- */}
-<section className="py-24 bg-white overflow-hidden">
+      {/* 5. VIDEO TESTIMONIALS SECTION (UPDATED) */}
+      <section className="py-24 bg-cream">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h4 className="text-gold font-bold tracking-[0.3em] uppercase mb-4 text-sm">Real Stories</h4>
+            <h2 className="text-4xl md:text-5xl font-black text-plum italic uppercase">
+              Travelers <span className="text-gold">On Camera</span>
+            </h2>
+            <div className="w-20 h-1 bg-gold mx-auto mt-6"></div>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { 
+                name: "Sathya Narayan", 
+                trip: "Thailand Bliss", 
+                videoUrl: "https://www.youtube.com/embed/1ceesqVVqZc?autoplay=1",
+                thumbnail: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2078&auto=format&fit=crop" 
+              },
+              { 
+                name: "Disha Dewangan", 
+                trip: "Bali Paradise", 
+                videoUrl: "https://www.youtube.com/embed/PJDvoQGcNE0?autoplay=1", 
+                thumbnail: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2076&auto=format&fit=crop"
+              },
+              { 
+                name: "Tata Reddy", 
+                trip: "Kasi Yatra", 
+                videoUrl: "https://www.youtube.com/embed/ofSggv8ZE-k?autoplay=1", 
+                thumbnail: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=2076&auto=format&fit=crop"
+              }
+            ].map((video, i) => (
+              <div 
+                key={i} 
+                onClick={() => setActiveVideo(video)} // CLICK TO OPEN
+                className="group relative h-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white cursor-pointer"
+              >
+                <img src={video.thumbnail} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={video.name} />
+                <div className="absolute inset-0 bg-gradient-to-t from-plum via-transparent to-black/20 opacity-80" />
+
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 bg-gold/90 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.6)] group-hover:scale-125 transition-transform">
+                    <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-plum border-b-[12px] border-b-transparent ml-2" />
+                  </div>
+                </div>
+
+                <div className="absolute bottom-8 left-8 right-8">
+                  <div className="flex gap-1 text-gold mb-2">
+                    {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
+                  </div>
+                  <h4 className="text-2xl font-bold text-white leading-none">{video.name}</h4>
+                  <p className="text-gold font-medium text-xs uppercase tracking-widest mt-2">Trip: {video.trip}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* POPUP MODAL (NEW) */}
+        <AnimatePresence>
+          {activeVideo && (
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-plum/95 backdrop-blur-xl"
+            >
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="relative w-full max-w-md aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-2xl"
+              >
+                <button 
+                  onClick={() => setActiveVideo(null)} 
+                  className="absolute top-4 right-4 z-10 bg-gold text-plum p-2 rounded-full hover:rotate-90 transition-all"
+                >
+                  <X size={24} />
+                </button>
+                <iframe 
+                  src={activeVideo.videoUrl}
+                  className="w-full h-full"
+                  allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </section>
+
+{/* --- CATEGORIZED PACKAGE SWIPER --- */}
+<section className="py-24 bg-white overflow-hidden w-full">
   <div className="container mx-auto px-4">
     <div className="text-center mb-16">
       <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-sm">Curated Experiences</h4>
@@ -192,30 +282,30 @@ const Home = () => {
             <p className="text-gray-400 text-sm font-medium uppercase tracking-widest">Handpicked {category} Escapes</p>
           </div>
           <div className="hidden md:flex gap-2 text-gold text-xs font-bold uppercase italic opacity-70">
-          Swipe to explore →
+            Swipe to explore →
           </div>
         </div>
 
-        {/* 1. Added 'overscroll-behavior-x-contain' to prevent the whole page from bouncing.
-          2. Added 'cursor-grab' for a better desktop feel.
+        {/* FIXED WRAPPER:
+            1. Added 'items-stretch' so all cards have the same height.
+            2. Added 'touch-pan-x' to disable vertical "jiggling" during swipe.
+            3. Added 'select-none' so text isn't accidentally highlighted while dragging.
         */}
-        <div className="flex overflow-x-auto pb-8 gap-6 no-scrollbar snap-x snap-mandatory px-2 overscroll-x-contain cursor-grab active:cursor-grabbing">
+        <div className="flex items-stretch overflow-x-auto pb-8 gap-6 no-scrollbar snap-x snap-mandatory px-2 overscroll-x-contain cursor-grab active:cursor-grabbing touch-pan-x select-none">
           {allPackages
             .filter(pkg => pkg.cat === category)
             .map((pkg, idx) => (
               <div 
                 key={idx} 
-                /* STRICT FIX: 
-                   - Removed all motion.div 'whileHover' or 'y' transforms.
-                   - Added 'hover:shadow-2xl' only (no movement).
-                   - Added 'will-change-transform' to keep scrolling smooth.
+                /* REMOVED: all motion and y-axis transforms.
+                   FIXED: Added 'flex flex-col' with 'h-full' to ensure cards stay aligned.
                 */
-                className="min-w-[300px] md:min-w-[380px] snap-start bg-cream rounded-[2.5rem] overflow-hidden flex flex-col h-full shadow-lg border border-gold/5 transition-shadow duration-300 hover:shadow-2xl will-change-transform"
+                className="min-w-[300px] md:min-w-[380px] snap-start bg-cream rounded-[2.5rem] overflow-hidden flex flex-col shadow-lg border border-gold/5 transition-all duration-300 hover:shadow-2xl"
               >
-                <div className="h-56 relative overflow-hidden">
+                <div className="h-56 relative overflow-hidden shrink-0">
                   <img 
                     src={pkg.img} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none" 
                     alt={pkg.title} 
                   />
                   <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md text-plum px-4 py-1 rounded-full text-[10px] font-black uppercase italic shadow-xl">
@@ -223,14 +313,15 @@ const Home = () => {
                   </div>
                 </div>
                 
-                <div className="p-8">
+                {/* flex-grow ensures the bottom area fills the card evenly */}
+                <div className="p-8 flex flex-col flex-grow">
                   <div className="flex items-center gap-2 text-[10px] font-bold text-gold uppercase mb-3 tracking-widest">
                     <Clock size={14}/> {pkg.dur}
                   </div>
-                  <h4 className="text-2xl font-bold text-plum mb-6 leading-tight">{pkg.title}</h4>
+                  <h4 className="text-2xl font-bold text-plum mb-6 leading-tight flex-grow">{pkg.title}</h4>
                   <Link 
                     to="/contact" 
-                    className="flex items-center gap-2 text-plum font-bold text-sm hover:gap-4 transition-all"
+                    className="flex items-center gap-2 text-plum font-bold text-sm hover:gap-4 transition-all mt-auto"
                   >
                     Check Availability <ChevronRight size={18} className="text-gold" />
                   </Link>
@@ -242,6 +333,7 @@ const Home = () => {
     ))}
   </div>
 </section>
+
 
       {/* 5. TESTIMONIALS SECTION */}
       <section className="py-24 bg-cream">

@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
 import ScrollToTop from './pages/ScrollToTop';
 
+import logo from './assets/logo.jpeg'; 
+import logocheck from './assets/logocheck.png';
+import logo2 from './assets/logo2.jpg'; 
+
 // Import your page components
 import Home from './pages/Home';
 import Packages from './pages/Packages';
@@ -11,15 +15,26 @@ import About from './pages/About';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 
-function App() {
+
+
+function App(){
+  const [scrolled, setScrolled] = React.useState(false);
+  React.useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 50);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
   return (
     <Router>
       {/* This must be inside Router to work, and outside Routes to affect all pages */}
       <ScrollToTop /> 
 
-      <div className="bg-cream min-h-screen text-plum flex flex-col font-sans">
+    <div className="bg-cream min-h-screen text-plum flex flex-col font-sans">
         
-        {/* --- TOP INFO BAR (Interactive) --- */}
+{/* --- TOP INFO BAR (Interactive) --- */}
 <div className="bg-plum/10 text-plum py-2 px-6 text-[10px] md:text-xs flex justify-between border-b border-plum/5 font-medium uppercase tracking-wider">
   <div className="flex gap-4">
     {/* Clickable Phone */}
@@ -45,16 +60,14 @@ function App() {
         {/* --- GLOBAL NAVIGATION --- */}
         <nav className="bg-plum text-cream py-4 px-6 sticky top-0 z-50 shadow-xl border-b border-gold/30">
           <div className="container mx-auto flex justify-between items-center">
-            <Link to="/" className="group flex items-center gap-3">
-              <div>
-                <h1 className="text-xl md:text-2xl font-bold tracking-widest text-gold uppercase group-hover:scale-105 transition">
-                  Aaru Trips
-                </h1>
-                <p className="text-[10px] uppercase tracking-widest text-cream/60">
-                  Divine Journey, Peaceful Experience
-                </p>
-              </div>
-            </Link>
+            <Link to="/" className="group flex items-center gap-4">
+      {/* LOGO IMAGE PLACEHOLDER */}
+      <img 
+        src={logocheck}
+        alt="Aaru Trips Logo" 
+        className="h-10 md:h-12 w-auto object-contain transform scale-125 md:scale-150 group-hover:scale-155 transition duration-300" 
+      />
+    </Link>
             
             <div className="hidden md:flex gap-8 items-center font-semibold text-sm uppercase tracking-wider">
               <Link to="/" className="hover:text-gold transition-colors">Home</Link>
@@ -70,6 +83,7 @@ function App() {
             </Link>
           </div>
         </nav>
+
 
         {/* --- PAGE CONTENT --- */}
         <main className="flex-grow">
