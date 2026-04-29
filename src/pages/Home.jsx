@@ -54,63 +54,58 @@ const Home = () => {
     <div className="bg-cream overflow-x-hidden">
       
       {/* 1. UPGRADED HERO SLIDER SECTION */}
-<section className="relative h-[85vh] md:h-[90vh] overflow-hidden bg-plum border-b-8 border-gold">
-  <AnimatePresence mode="wait">
-    <motion.div 
-      key={currentSlide} 
-      initial={{ opacity: 0, scale: 1.1 }} 
-      animate={{ opacity: 1, scale: 1 }} 
-      exit={{ opacity: 0 }} 
-      transition={{ duration: 1.5 }} 
-      className="absolute inset-0"
-    >
-      {/* High-contrast overlay to make the Gold text pop */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-plum/80 z-10" />
-      <img src={slides[currentSlide].url} className="w-full h-full object-cover" alt="Slide" />
-    </motion.div>
-  </AnimatePresence>
+      <section className="relative h-[85vh] md:h-[90vh] overflow-hidden bg-plum border-b-8 border-gold">
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={currentSlide} 
+            initial={{ opacity: 0, scale: 1.1 }} 
+            animate={{ opacity: 1, scale: 1 }} 
+            exit={{ opacity: 0 }} 
+            transition={{ duration: 1.5 }} 
+            className="absolute inset-0"
+          >
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-plum/80 z-10" />
+            <img src={slides[currentSlide].url} className="w-full h-full object-cover" alt="Slide" />
+          </motion.div>
+        </AnimatePresence>
 
-  <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4">
-    {/* Subtitle - Matching the About Page style */}
-    <motion.p 
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      className="text-white font-bold tracking-[0.4em] uppercase mb-4 text-xs md:text-sm border-y border-gold/30 py-2 px-6 inline-block"
-    >
-      {slides[currentSlide].subtitle}
-    </motion.p>
+        <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4">
+          <motion.p 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="text-white font-bold tracking-[0.4em] uppercase mb-4 text-xs md:text-sm border-y border-gold/30 py-2 px-6 inline-block"
+          >
+            {slides[currentSlide].subtitle}
+          </motion.p>
 
-    {/* Main Headline - Using the High-Intensity Gold */}
-    <motion.h2 
-      initial={{ scale: 0.9, opacity: 0 }} 
-      animate={{ scale: 1, opacity: 1 }}
-      className="text-6xl md:text-9xl font-black text-[#FBBF24] italic uppercase tracking-tighter drop-shadow-2xl mb-8"
-    >
-      {slides[currentSlide].title}
-    </motion.h2>
+          <motion.h2 
+            initial={{ scale: 0.9, opacity: 0 }} 
+            animate={{ scale: 1, opacity: 1 }}
+            className="text-6xl md:text-9xl font-black text-[#FBBF24] italic uppercase tracking-tighter drop-shadow-2xl mb-8"
+          >
+            {slides[currentSlide].title}
+          </motion.h2>
 
-    {/* Call to Action */}
-    <motion.div
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ delay: 0.5 }}
-    >
-      <Link 
-        to="/contact" 
-        className="bg-[#FBBF24] text-plum px-12 py-5 rounded-full font-black uppercase tracking-widest hover:scale-110 hover:bg-white transition-all shadow-[0_0_30px_rgba(251,191,36,0.4)]"
-      >
-        Plan My Trip
-      </Link>
-    </motion.div>
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <Link 
+              to="/contact" 
+              className="bg-[#FBBF24] text-plum px-12 py-5 rounded-full font-black uppercase tracking-widest hover:scale-110 hover:bg-white transition-all shadow-[0_0_30px_rgba(251,191,36,0.4)]"
+            >
+              Plan My Trip
+            </Link>
+          </motion.div>
 
-    {/* Animated Scroll Indicator */}
-    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gold animate-bounce opacity-50">
-      <ChevronRight size={32} className="rotate-90" />
-    </div>
-  </div>
-</section>
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gold animate-bounce opacity-50">
+            <ChevronRight size={32} className="rotate-90" />
+          </div>
+        </div>
+      </section>
 
-      {/* 2. OUR MISSION / PHILOSOPHY SECTION */}
+      {/* 2. OUR MISSION SECTION */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-gold font-bold tracking-[0.3em] uppercase mb-4 text-sm">Our Mission</h3>
@@ -142,7 +137,7 @@ const Home = () => {
               { icon: <Globe size={40} />, title: "Expert Guides", desc: "Professional English-speaking guides to bring culture to life." },
               { icon: <Plane size={40} />, title: "AC Transit", desc: "Travel in luxury with fully air-conditioned vehicles for all transfers." }
             ].map((item, i) => (
-              <motion.div whileHover={{ y: -10 }} key={i} className="bg-white p-8 rounded-[2rem] shadow-xl text-center border-b-4 border-gold group transition-all duration-300 hover:bg-plum hover:text-cream">
+              <motion.div key={i} className="bg-white p-8 rounded-[2rem] shadow-xl text-center border-b-4 border-gold group transition-all duration-300 hover:bg-plum hover:text-cream">
                 <div className="text-gold flex justify-center mb-6 group-hover:scale-110 transition duration-300">{item.icon}</div>
                 <h4 className="font-bold text-xl mb-4 uppercase tracking-tight">{item.title}</h4>
                 <p className="text-sm opacity-70 leading-relaxed font-medium">{item.desc}</p>
@@ -152,36 +147,36 @@ const Home = () => {
         </div>
       </section>
 
-      {/* --- ABOUT TEASER SECTION ON HOME PAGE --- */}
-<section className="py-24 bg-white overflow-hidden">
-  <div className="container mx-auto px-4">
-    <div className="flex flex-col md:flex-row items-center gap-16">
-      <div className="md:w-1/2 relative">
-        <div className="absolute -top-10 -left-10 w-64 h-64 bg-gold/10 rounded-full blur-3xl"></div>
-        <img 
-          src={hero2} 
-          className="rounded-[3rem] shadow-2xl relative z-10 border-8 border-cream" 
-          alt="About Aaru Trips" 
-        />
-      </div>
-      <div className="md:w-1/2">
-        <h4 className="text-gold font-bold tracking-widest uppercase mb-4">Know Us Better</h4>
-        <h2 className="text-4xl md:text-5xl font-bold text-plum mb-6 italic">A Legacy of <br/> Trust & <span className="text-gold">Peaceful Journeys</span></h2>
-        <p className="text-gray-500 mb-8 text-lg leading-relaxed">
-          At Aaru Trips, we don't just sell packages; we share stories. With deep roots in Chennai and Madurai, we specialize in making complex travel simple, safe, and soulful. 
-        </p>
-        <Link 
-          to="/about" 
-          className="inline-flex items-center gap-2 text-plum font-bold border-b-2 border-gold pb-1 hover:gap-4 transition-all"
-        >
-          Read Full Story <ChevronRight size={20} />
-        </Link>
-      </div>
-    </div>
-  </div>
-</section>
+      {/* 4. ABOUT TEASER SECTION */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center gap-16">
+            <div className="md:w-1/2 relative">
+              <div className="absolute -top-10 -left-10 w-64 h-64 bg-gold/10 rounded-full blur-3xl"></div>
+              <img 
+                src={hero2} 
+                className="rounded-[3rem] shadow-2xl relative z-10 border-8 border-cream" 
+                alt="About Aaru Trips" 
+              />
+            </div>
+            <div className="md:w-1/2">
+              <h4 className="text-gold font-bold tracking-widest uppercase mb-4">Know Us Better</h4>
+              <h2 className="text-4xl md:text-5xl font-bold text-plum mb-6 italic">A Legacy of <br/> Trust & <span className="text-gold">Peaceful Journeys</span></h2>
+              <p className="text-gray-500 mb-8 text-lg leading-relaxed">
+                At Aaru Trips, we don't just sell packages; we share stories. With deep roots in Chennai and Madurai, we specialize in making complex travel simple, safe, and soulful. 
+              </p>
+              <Link 
+                to="/about" 
+                className="inline-flex items-center gap-2 text-plum font-bold border-b-2 border-gold pb-1 hover:gap-4 transition-all"
+              >
+                Read Full Story <ChevronRight size={20} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {/* --- CATEGORIZED PACKAGE SWIPER --- */}
+     {/* --- CATEGORIZED PACKAGE SWIPER --- */}
 <section className="py-24 bg-white overflow-hidden">
   <div className="container mx-auto px-4">
     <div className="text-center mb-16">
@@ -189,34 +184,38 @@ const Home = () => {
       <h2 className="text-4xl md:text-5xl font-black text-plum italic uppercase">Explore <span className="text-gold font-black">Categories</span></h2>
     </div>
 
-    {/* Category Loops */}
     {['International', 'Domestic', 'Spiritual'].map((category) => (
       <div key={category} className="mb-20 last:mb-0">
-        {/* Category Header */}
         <div className="flex justify-between items-end mb-8 px-2 border-l-4 border-gold pl-6">
           <div>
             <h3 className="text-2xl font-black text-plum uppercase tracking-tighter">{category}</h3>
             <p className="text-gray-400 text-sm font-medium uppercase tracking-widest">Handpicked {category} Escapes</p>
           </div>
-          <div className="hidden md:flex gap-2 text-gold/30 text-xs font-bold uppercase italic">
-            Swipe to explore →
+          <div className="hidden md:flex gap-2 text-gold text-xs font-bold uppercase italic opacity-70">
+          Swipe to explore →
           </div>
         </div>
 
-        {/* Horizontal Swiper Queue */}
-        <div className="flex overflow-x-auto pb-8 gap-6 no-scrollbar snap-x snap-mandatory px-2">
+        {/* 1. Added 'overscroll-behavior-x-contain' to prevent the whole page from bouncing.
+          2. Added 'cursor-grab' for a better desktop feel.
+        */}
+        <div className="flex overflow-x-auto pb-8 gap-6 no-scrollbar snap-x snap-mandatory px-2 overscroll-x-contain cursor-grab active:cursor-grabbing">
           {allPackages
             .filter(pkg => pkg.cat === category)
             .map((pkg, idx) => (
-              <motion.div 
+              <div 
                 key={idx} 
-                whileHover={{ y: -5 }}
-                className="min-w-[300px] md:min-w-[380px] snap-start bg-cream rounded-[2.5rem] overflow-hidden flex flex-col h-full shadow-lg border border-gold/5 group"
+                /* STRICT FIX: 
+                   - Removed all motion.div 'whileHover' or 'y' transforms.
+                   - Added 'hover:shadow-2xl' only (no movement).
+                   - Added 'will-change-transform' to keep scrolling smooth.
+                */
+                className="min-w-[300px] md:min-w-[380px] snap-start bg-cream rounded-[2.5rem] overflow-hidden flex flex-col h-full shadow-lg border border-gold/5 transition-shadow duration-300 hover:shadow-2xl will-change-transform"
               >
                 <div className="h-56 relative overflow-hidden">
                   <img 
                     src={pkg.img} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                     alt={pkg.title} 
                   />
                   <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md text-plum px-4 py-1 rounded-full text-[10px] font-black uppercase italic shadow-xl">
@@ -231,12 +230,12 @@ const Home = () => {
                   <h4 className="text-2xl font-bold text-plum mb-6 leading-tight">{pkg.title}</h4>
                   <Link 
                     to="/contact" 
-                    className="flex items-center gap-2 text-plum font-bold text-sm group-hover:gap-4 transition-all"
+                    className="flex items-center gap-2 text-plum font-bold text-sm hover:gap-4 transition-all"
                   >
                     Check Availability <ChevronRight size={18} className="text-gold" />
                   </Link>
                 </div>
-              </motion.div>
+              </div>
             ))}
         </div>
       </div>
@@ -244,7 +243,7 @@ const Home = () => {
   </div>
 </section>
 
-      {/* 5. TESTIMONIALS SECTION (Social Proof) */}
+      {/* 5. TESTIMONIALS SECTION */}
       <section className="py-24 bg-cream">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -279,7 +278,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 6. OUR PRESENCE & CONTACT LINKS SECTION */}
+      {/* 6. OUR PRESENCE SECTION */}
       <section className="py-20 bg-plum text-cream relative">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-16 items-center">
