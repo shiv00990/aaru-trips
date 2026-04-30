@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Clock, X, ChevronRight, CheckCircle2, Info, Calendar, WhatsApp } from 'lucide-react';
+import { Clock, X, ChevronRight, CheckCircle2, Info, Calendar } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-// Asset imports
+// Asset imports (Assuming these paths remain the same)
 import baliImg from '../assets/bali.jpg';
 import thailandImg from '../assets/thailand.jpg';
 import vietnamImg from '../assets/vietnam.jpg';
@@ -20,7 +20,7 @@ const Packages = () => {
   const [selectedPkg, setSelectedPkg] = useState(null);
 
   const allTours = [
-    // --- INTERNATIONAL ---
+    // --- INTERNATIONAL (Prices changed to "On Request") ---
     { 
       title: "Mauritius Escape", price: "On Request", dur: "6N/7D", cat: "International", img: mauritiusImg, 
       details: "Luxury beach resort stay with comprehensive island exploration.",
@@ -37,7 +37,7 @@ const Packages = () => {
       inclusions: ["4-Star Resort", "Daily Breakfast & Dinner", "Island Transfers"]
     },
     { 
-      title: "Bali Paradise", price: "₹78,000", dur: "6N/7D", cat: "International", img: baliImg, 
+      title: "Bali Paradise", price: "On Request", dur: "6N/7D", cat: "International", img: baliImg, 
       details: "A romantic blend of Ubud's jungle serenity and Kuta's vibrant beaches.",
       highlights: ["Private Pool Villa", "Floating Breakfast", "Nusa Penida Trip"],
       itinerary: [
@@ -65,7 +65,7 @@ const Packages = () => {
       inclusions: ["4-Star Hotels", "Safari World Tickets", "All Transfers"]
     },
     { 
-      title: "Magic Vietnam", price: "₹43,000", dur: "6N/7D", cat: "International", img: vietnamImg, 
+      title: "Magic Vietnam", price: "On Request", dur: "6N/7D", cat: "International", img: vietnamImg, 
       details: "Discover the Golden Bridge and the hidden gems of Central Vietnam.",
       highlights: ["Ba Na Hills", "Golden Bridge", "Hoi An Ancient Town"],
       itinerary: [
@@ -80,9 +80,9 @@ const Packages = () => {
       inclusions: ["Domestic Flights", "Entrance Fees", "Daily Meals"]
     },
 
-    // --- DOMESTIC ---
+    // --- DOMESTIC (Prices changed to "On Request") ---
     { 
-      title: "Kashmir Bliss", price: "₹27,000", dur: "4N/5D", cat: "Domestic", img: kashmirImg, 
+      title: "Kashmir Bliss", price: "On Request", dur: "4N/5D", cat: "Domestic", img: kashmirImg, 
       details: "Heaven on earth with shikara rides and snow-capped peaks.",
       highlights: ["Dal Lake Houseboat", "Gulmarg Gondola", "Pahalgam Valley"],
       itinerary: [
@@ -95,7 +95,7 @@ const Packages = () => {
       inclusions: ["Houseboat Stay", "AC Vehicle", "Breakfast & Dinner"]
     },
     { 
-      title: "Andaman Honeymoon", price: "₹42,000", dur: "6N/7D", cat: "Domestic", img: andamanImg, 
+      title: "Andaman Honeymoon", price: "On Request", dur: "6N/7D", cat: "Domestic", img: andamanImg, 
       details: "Crystal clear waters and private beach moments.",
       highlights: ["Havelock Island", "Radhanagar Beach", "Scuba Diving"],
       itinerary: [
@@ -110,7 +110,7 @@ const Packages = () => {
       inclusions: ["Ferry Tickets", "Candlelight Dinner", "Decorated Bed"]
     },
     { 
-      title: "Himachal Wonders", price: "₹41,000", dur: "5N/6D", cat: "Domestic", img: himachalImg, 
+      title: "Himachal Wonders", price: "On Request", dur: "5N/6D", cat: "Domestic", img: himachalImg, 
       details: "Explore the scenic beauty of Shimla, Manali, and Rohtang Pass.",
       highlights: ["Solang Valley", "Mall Road Shopping", "Hadimba Temple"],
       itinerary: [
@@ -124,9 +124,9 @@ const Packages = () => {
       inclusions: ["AC Volvo/Car", "3-Star Deluxe Hotels", "Taxes"]
     },
 
-    // --- SPIRITUAL ---
+    // --- SPIRITUAL (Prices changed to "On Request") ---
     { 
-      title: "Kasi-Ayodhya Yatra", price: "₹29,000", dur: "3D/2N", cat: "Spiritual", img: kasiImg, 
+      title: "Kasi-Ayodhya Yatra", price: "On Request", dur: "3D/2N", cat: "Spiritual", img: kasiImg, 
       details: "Sacred darshan at the heart of Indian spirituality.",
       highlights: ["Ganga Aarti", "Ram Mandir Darshan", "Kashi Vishwanath"],
       itinerary: [
@@ -137,7 +137,7 @@ const Packages = () => {
       inclusions: ["VIP Darshan", "Pure Veg Meals", "AC Transport"]
     },
     { 
-      title: "Panchabhoota Yatra", price: "₹12,000", dur: "5 Days", cat: "Spiritual", img: panchaboothaImg, 
+      title: "Panchabhoota Yatra", price: "On Request", dur: "5 Days", cat: "Spiritual", img: panchaboothaImg, 
       details: "Divine journey to the 5 elements of Shiva.",
       highlights: ["Chidambaram", "Kalahasti", "Arunachalam"],
       itinerary: [
@@ -150,7 +150,7 @@ const Packages = () => {
       inclusions: ["Temple Guide", "AC Accommodation", "Group Coach"]
     },
     { 
-      title: "Ujjain-Omkareshwar", price: "₹20,000", dur: "3 Days", cat: "Spiritual", img: ujjanImg, 
+      title: "Ujjain-Omkareshwar", price: "On Request", dur: "3 Days", cat: "Spiritual", img: ujjanImg, 
       details: "The land of Mahakal and the sacred Narmada river.",
       highlights: ["Bhasma Aarti", "Jyotirlinga Darshan", "Narmada Boat"],
       itinerary: [
@@ -168,13 +168,20 @@ const Packages = () => {
     <div className="py-20 bg-cream min-h-screen">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-plum mb-6 italic uppercase tracking-tighter">Explore Our <span className="text-gold">Destinations</span></h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-plum mb-6 italic uppercase tracking-tighter">
+            Explore Our <span className="text-gold">Destinations</span>
+          </h2>
           <div className="flex flex-wrap justify-center gap-3">
             {['All', 'International', 'Domestic', 'Spiritual'].map((cat) => (
-              <button key={cat} onClick={() => setFilter(cat)}
+              <button 
+                key={cat} 
+                onClick={() => setFilter(cat)}
                 className={`px-6 py-2 rounded-full font-bold transition-all border-2 ${
                   filter === cat ? 'bg-plum text-gold border-plum' : 'bg-transparent text-plum border-plum/20 hover:border-gold'
-                }`}>{cat}</button>
+                }`}
+              >
+                {cat}
+              </button>
             ))}
           </div>
         </div>
@@ -185,17 +192,22 @@ const Packages = () => {
               className="bg-white rounded-[2rem] overflow-hidden shadow-xl border border-gold/10 group flex flex-col h-full hover:shadow-2xl transition-shadow">
               <div className="relative h-60 overflow-hidden">
                 <img src={pkg.img} className="w-full h-full object-cover transition duration-700" alt={pkg.title} />
-                <div className="absolute top-4 left-4 bg-plum/90 backdrop-blur-md text-gold px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">{pkg.cat}</div>
+                <div className="absolute top-4 left-4 bg-plum/90 backdrop-blur-md text-gold px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                  {pkg.cat}
+                </div>
               </div>
               <div className="p-8 flex flex-col flex-grow">
                 <div className="flex justify-between items-center mb-4 text-xs font-bold text-gray-400 uppercase">
                   <span className="flex items-center gap-1"><Clock size={14} className="text-gold"/> {pkg.dur}</span>
-                  <span className="text-gold text-lg">{pkg.price}</span>
+                  <span className="text-gold font-black text-sm italic">Bespoke Pricing</span>
                 </div>
                 <h4 className="text-2xl font-bold text-plum mb-4 leading-tight">{pkg.title}</h4>
                 <p className="text-sm text-gray-500 mb-8 line-clamp-2 italic">{pkg.details}</p>
-                <button onClick={() => setSelectedPkg(pkg)} className="mt-auto flex items-center justify-center gap-2 w-full bg-plum text-cream py-4 rounded-2xl font-bold hover:bg-gold hover:text-plum transition duration-300">
-                  View Full Itinerary <ChevronRight size={18}/>
+                <button 
+                  onClick={() => setSelectedPkg(pkg)} 
+                  className="mt-auto flex items-center justify-center gap-2 w-full bg-plum text-cream py-4 rounded-2xl font-bold hover:bg-gold hover:text-plum transition duration-300"
+                >
+                  View Details & Plan <ChevronRight size={18}/>
                 </button>
               </div>
             </motion.div>
@@ -212,7 +224,7 @@ const Packages = () => {
               
               <div className="p-8 md:p-10 bg-white border-b border-gold/10 flex justify-between items-center">
                 <div>
-                  <span className="text-gold font-bold uppercase tracking-[0.2em] text-[10px]">{selectedPkg.cat}</span>
+                  <span className="text-gold font-bold uppercase tracking-[0.2em] text-[10px]">{selectedPkg.cat} Experience</span>
                   <h4 className="text-3xl md:text-4xl font-bold text-plum mt-2 leading-none">{selectedPkg.title}</h4>
                 </div>
                 <button onClick={() => setSelectedPkg(null)} className="bg-plum text-gold p-3 rounded-full hover:rotate-90 transition duration-300"><X size={24} /></button>
@@ -221,7 +233,8 @@ const Packages = () => {
               <div className="overflow-y-auto p-8 md:p-10 flex-grow scrollbar-thin">
                 <div className="grid md:grid-cols-3 gap-10">
                   <div className="md:col-span-2 space-y-8">
-                    <h5 className="flex items-center gap-2 text-plum font-bold uppercase tracking-widest text-sm border-l-4 border-gold pl-4"><Calendar size={18} className="text-gold"/> Day-by-Day Plan</h5>
+                    <h5 className="flex items-center gap-2 text-plum font-bold uppercase tracking-widest text-sm border-l-4 border-gold pl-4"><Calendar size={18} className="text-gold"/> Sample Itinerary</h5>
+                    <p className="text-xs text-gray-400 italic">Note: This plan can be fully adjusted to your pace and preferences.</p>
                     {selectedPkg.itinerary.map((item, i) => (
                       <div key={i} className="relative pl-8 border-l-2 border-gold/20 pb-8 last:pb-0">
                         <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gold shadow-lg" />
@@ -242,8 +255,8 @@ const Packages = () => {
                       </ul>
                     </div>
                     <div className="bg-plum text-cream p-8 rounded-[2rem] shadow-xl">
-                      <h5 className="flex items-center gap-2 text-gold font-bold uppercase tracking-widest text-xs mb-4"><Info size={16}/> Ground Assistance</h5>
-                      <p className="text-[11px] opacity-70">Aaru Trips provides 24/7 dedicated local support to ensure your journey is peaceful and divine.</p>
+                      <h5 className="flex items-center gap-2 text-gold font-bold uppercase tracking-widest text-xs mb-4"><Info size={16}/> Personalized for You</h5>
+                      <p className="text-[11px] opacity-70">Pricing for this experience is calculated based on your specific travel dates, group size, and hotel preferences.</p>
                     </div>
                   </div>
                 </div>
@@ -251,12 +264,24 @@ const Packages = () => {
 
               <div className="p-8 md:px-10 bg-white border-t border-gold/10 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
-                  <p className="text-[10px] text-gray-400 uppercase font-black">Starting From</p>
-                  <p className="text-4xl font-black text-plum">{selectedPkg.price}</p>
+                  <p className="text-[10px] text-gray-400 uppercase font-black tracking-widest">Investment</p>
+                  <p className="text-3xl font-black text-plum uppercase italic">Price on Request</p>
                 </div>
                 <div className="flex gap-4 w-full md:w-auto">
-                  <a href={`https://wa.me/919087060620?text=Hi Aaru Trips, I'm interested in the ${selectedPkg.title} package.`} target="_blank" rel="noreferrer" className="flex-1 md:flex-none text-center bg-green-500 text-white px-8 py-4 rounded-2xl font-bold hover:bg-green-600 transition shadow-lg">WhatsApp</a>
-                  <Link to="/contact" className="flex-1 md:flex-none text-center bg-gold text-plum px-8 py-4 rounded-2xl font-bold hover:shadow-lg transition">Book Now</Link>
+                  <a 
+                    href={`https://wa.me/919087060620?text=Hi Aaru Trips, I would like to get a personalized quote for the ${selectedPkg.title} package.`} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="flex-1 md:flex-none text-center bg-green-500 text-white px-8 py-4 rounded-2xl font-bold hover:bg-green-600 transition shadow-lg"
+                  >
+                    WhatsApp for Quote
+                  </a>
+                  <Link 
+                    to="/contact" 
+                    className="flex-1 md:flex-none text-center bg-gold text-plum px-8 py-4 rounded-2xl font-bold hover:shadow-lg transition"
+                  >
+                    Customize Trip
+                  </Link>
                 </div>
               </div>
             </motion.div>

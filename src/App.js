@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Phone, Menu, X } from 'lucide-react';
+import { FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollToTop from './pages/ScrollToTop';
-import logocheck from './assets/logocheck.png';
+import logocheck from './assets/logocheck2.png';
 
 // Import your page components
 import Home from './pages/Home';
@@ -122,6 +123,38 @@ function App(){
     </AnimatePresence>
           </div>
         </nav>
+
+        {/* --- FLOATING SOCIAL SIDEBAR --- */}
+<div className="fixed top-1/2 right-4 -translate-y-1/2 z-50 flex flex-col gap-4">
+
+  <a 
+    href="https://instagram.com/YOUR_USERNAME"
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="bg-plum text-cream p-3 rounded-full shadow-lg hover:bg-gold hover:text-plum transition-all hover:scale-110"
+  >
+    <FaInstagram size={18} />
+  </a>
+
+  <a 
+    href="https://facebook.com/YOUR_USERNAME"
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="bg-plum text-cream p-3 rounded-full shadow-lg hover:bg-gold hover:text-plum transition-all hover:scale-110"
+  >
+    <FaFacebookF size={18} />
+  </a>
+
+  <a 
+    href="https://linkedin.com/in/YOUR_USERNAME"
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="bg-plum text-cream p-3 rounded-full shadow-lg hover:bg-gold hover:text-plum transition-all hover:scale-110"
+  >
+    <FaLinkedinIn size={18} />
+  </a>
+
+</div>
 
 
         {/* --- PAGE CONTENT --- */}

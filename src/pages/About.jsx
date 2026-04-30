@@ -109,124 +109,148 @@ const About = () => {
       </nav>
 
       {/* 3. THE ORIGIN STORY */}
-      <section id="story" className="py-24 container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <motion.div 
-            initial={{ x: -50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-sm">Guided with Care</h4>
-            <h2 className="text-4xl md:text-5xl font-bold text-plum mb-8 italic leading-tight">
-              Inspired by <span className="text-gold">Wisdom</span>, <br/> Crafted for You
-            </h2>
-            <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
-              <p>
-                Inspired by <strong>“Aarumugam”</strong>, a sacred name symbolizing wisdom and protection, Aaru Trips and Travels reflects journeys that are guided with purpose.
-              </p>
-              <p>
-                Founded in June 2025, we believe travel is not just about where you go—it’s about what you feel and what you remember. We don't sell fixed packages; we design <strong>crafted experiences</strong> around your story.
-              </p>
-            </div>
-          </motion.div>
+<section id="story" className="py-24 container mx-auto px-4">
+  <div className="grid md:grid-cols-2 gap-16 items-center">
+    <motion.div 
+      initial={{ x: -50, opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
+    >
+      <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-sm">Guided with Purpose</h4>
+      <h2 className="text-4xl md:text-5xl font-bold text-plum mb-8 italic leading-tight">
+        Inspired by <span className="text-gold">Wisdom</span>, <br/> Crafted for Your Story
+      </h2>
+      <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
+        <p>
+          The name <strong>“Aaru”</strong> is inspired by “Aarumugam,” a sacred name symbolizing wisdom, protection, and the strength of six directions. It reflects our belief that every journey should be guided with care and a clear sense of purpose.
+        </p>
+        <p>
+          At Aaru Trips and Travels, we understand that no two travelers seek the same connection. Some travel for the silence of the mountains, others for the thrill of discovery. This is why we don’t believe in fixed packages—we believe in <strong>crafted experiences</strong>.
+        </p>
+        <p className="text-plum font-bold italic">
+          Your trip adjusts to you—your pace, your preferences, and your story. We design journeys for people, not copy-paste itineraries.
+        </p>
+      </div>
+    </motion.div>
 
-          <motion.div 
-            initial={{ x: 50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="absolute -inset-4 bg-gold/20 rounded-[3rem] rotate-3 -z-10" />
-            <img 
-              src={hero2} 
-              className="rounded-[3rem] shadow-2xl border-4 border-white object-cover h-[500px] w-full" 
-              alt="Aaru Brand Story" 
-            />
-          </motion.div>
-        </div>
-      </section>
+    <motion.div 
+      initial={{ x: 50, opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      className="relative"
+    >
+      <div className="absolute -inset-4 bg-gold/20 rounded-[3rem] rotate-3 -z-10" />
+      <img 
+        src={hero2} 
+        className="rounded-[3rem] shadow-2xl border-4 border-white object-cover h-[500px] w-full transition-transform duration-700 hover:scale-[1.02]" 
+        alt="Aaru Brand Story" 
+      />
+      {/* Small floating badge to reinforce the concept */}
+      <div className="absolute bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-xl z-20 hidden lg:block border-l-4 border-gold">
+        <p className="text-plum font-black text-sm uppercase leading-tight">
+          Personalized <br/> <span className="text-gold">To Your Soul</span>
+        </p>
+      </div>
+    </motion.div>
+  </div>
+</section>
 
       {/* 4. MISSION & VISION GRID */}
-      <section id="mission" className="py-24 bg-plum text-cream relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="p-12 bg-white/5 backdrop-blur-sm rounded-[3rem] border border-white/10 hover:border-gold/50 transition duration-500">
-              <Target className="text-gold mb-6" size={48} />
-              <h3 className="text-3xl font-bold mb-4 italic">Our Mission</h3>
-              <p className="text-cream/70 text-lg leading-relaxed">
-                To create journeys that leave behind not just photos—but lasting memories, meaningful experiences, and a deep sense of fulfillment for every traveler.
-              </p>
-            </div>
-            <div className="p-12 bg-white/5 backdrop-blur-sm rounded-[3rem] border border-white/10 hover:border-gold/50 transition duration-500">
-              <Award className="text-gold mb-6" size={48} />
-              <h3 className="text-3xl font-bold mb-4 italic">Our Goal</h3>
-              <p className="text-cream/70 text-lg leading-relaxed">
-                To build a trusted travel brand by delivering high-quality service to 300+ happy travelers, growing with purpose and intention rather than just scale.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+<section id="mission" className="py-24 bg-plum text-cream relative overflow-hidden">
+  <div className="absolute top-0 left-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="grid md:grid-cols-2 gap-8">
+      
+      {/* MISSION: Focus on Emotion & Experience */}
+      <div className="p-12 bg-white/5 backdrop-blur-sm rounded-[3rem] border border-white/10 hover:border-gold/50 transition duration-500 group">
+        <Target className="text-gold mb-6 group-hover:scale-110 transition-transform duration-500" size={48} />
+        <h3 className="text-3xl font-bold mb-4 italic text-gold">Our Mission</h3>
+        <p className="text-cream/70 text-lg leading-relaxed">
+          To craft journeys where the traveler doesn't have to adjust to a trip—the trip adjusts to them. We strive to create experiences designed around your pace, your preferences, and your story.
+        </p>
+      </div>
+
+      {/* GOAL: Focus on Quality & Personalization over fixed numbers */}
+      <div className="p-12 bg-white/5 backdrop-blur-sm rounded-[3rem] border border-white/10 hover:border-gold/50 transition duration-500 group">
+        <Award className="text-gold mb-6 group-hover:scale-110 transition-transform duration-500" size={48} />
+        <h3 className="text-3xl font-bold mb-4 italic text-gold">Our Commitment</h3>
+        <p className="text-cream/70 text-lg leading-relaxed">
+          At Aaru, we don’t believe in "fixed packages." Our goal is to provide a perfectly planned experience for every rupee spent, ensuring a trust-first approach that is transparent, honest, and entirely bespoke.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* 5. TRUST STATS SECTION */}
-      <section id="stats" className="py-24 bg-white border-y border-gold/10">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h3 className="text-gold font-bold tracking-[0.3em] uppercase mb-4 text-sm">Our Specialty</h3>
-            <h2 className="text-4xl font-bold text-plum italic uppercase">Personalized Expertise</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {[
-  { 
-    icon: <Users size={40} />, 
-    val: "300",
-    suffix: "+", 
-    label: "Happy Travelers",
-    desc: "Our immediate target to build a legacy of trust through customized family and group trips.",
-    useSeparator: true // KEEP comma here (5,000)
-  },
-  { 
-    icon: <Landmark size={40} />, 
-    val: "100",
-    suffix: "%", 
-    label: "Personalized",
-    desc: "Tailor-made itineraries for families, friends, honeymoon couples, and spiritual seekers.",
-    useSeparator: true
-  },
-  { 
-    icon: <Globe size={40} />, 
-    val: "2025",
-    suffix: "", 
-    label: "Year Founded",
-    desc: "A modern, digital-first travel company based in Chennai, designed for today's travelers.",
-    useSeparator: false
-  },
-  { 
-    icon: <Shield size={40} />, 
-    val: "24",
-    suffix: "/7", 
-    label: "Support",
-    desc: "End-to-end support ensuring a seamless experience from planning to your return home.",
-    useSeparator: false
-  }
-].map((stat, i) => (
-  <div key={i} className="text-center p-6">
-    <div className="h-16 w-16 bg-gold/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-gold">
-      {stat.icon}
+<section id="stats" className="py-24 bg-white border-y border-gold/10">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h3 className="text-gold font-bold tracking-[0.3em] uppercase mb-4 text-sm">
+        Crafted for the Individual
+      </h3>
+      <h2 className="text-4xl font-bold text-plum italic uppercase">
+        Personalized <span className="text-gold">Expertise</span>
+      </h2>
+      <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-4 font-bold">
+        Because travel is not about where you go—it's about what you feel.
+      </p>
     </div>
-    <p className="text-5xl font-black text-plum mb-2 tracking-tighter">
-      {/* Pass the useSeparator prop here */}
-      <CountUp end={stat.val} useSeparator={stat.useSeparator} />{stat.suffix}
-    </p>
-    <p className="text-sm font-bold text-gold uppercase tracking-[0.2em] mb-4">{stat.label}</p>
-    <p className="text-gray-500 text-sm leading-relaxed px-4">{stat.desc}</p>
-  </div>
-))}
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      {[
+        { 
+          icon: <Users size={40} />, 
+          val: "300",
+          suffix: "+", 
+          label: "Journeys Planned",
+          desc: "Our mission is to build a legacy of trust by understanding that no two travelers are the same.",
+          useSeparator: true 
+        },
+        { 
+          icon: <Landmark size={40} />, 
+          val: "100",
+          suffix: "%", 
+          label: "Custom-Made",
+          desc: "Bespoke itineraries designed around your pace, your preferences, and your unique story.",
+          useSeparator: true
+        },
+        { 
+          icon: <Globe size={40} />, 
+          val: "2025",
+          suffix: "", 
+          label: "Modern Vision",
+          desc: "A digital-first partner based in Chennai, focused on creating memories rather than just packages.",
+          useSeparator: false
+        },
+        { 
+          icon: <Shield size={40} />, 
+          val: "24",
+          suffix: "/7", 
+          label: "Guided Care",
+          desc: "Transparent and reliable end-to-end support, ensuring your trip adjusts perfectly to you.",
+          useSeparator: false
+        }
+      ].map((stat, i) => (
+        <div key={i} className="text-center p-6 group">
+          <div className="h-16 w-16 bg-gold/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-gold group-hover:bg-gold group-hover:text-white transition-all duration-500">
+            {stat.icon}
           </div>
+          <p className="text-5xl font-black text-plum mb-2 tracking-tighter">
+            <CountUp end={stat.val} useSeparator={stat.useSeparator} />{stat.suffix}
+          </p>
+          <p className="text-[11px] font-bold text-gold uppercase tracking-[0.2em] mb-4">
+            {stat.label}
+          </p>
+          <p className="text-gray-500 text-xs leading-relaxed px-4 font-medium italic">
+            {stat.desc}
+          </p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
 {/* --- THE AARU PHILOSOPHY SECTION --- */}
 <section className="py-24 bg-white">
@@ -293,22 +317,6 @@ const About = () => {
     </div>
   </div>
 </section>
-
-      {/* 8. OUR PRESENCE */}
-      <section id="presence" className="py-24 text-center bg-cream">
-        <h3 className="text-gold font-bold tracking-[0.3em] uppercase mb-4 text-sm">Where We Are</h3>
-        <h2 className="text-4xl font-bold text-plum mb-16 italic uppercase">Our Operations</h2>
-        <div className="flex flex-wrap justify-center gap-8 md:gap-20">
-          {['Chennai', 'Bengaluru'].map((city) => (
-            <div key={city} className="bg-white px-12 py-8 rounded-[2rem] shadow-xl border border-gold/10 min-w-[200px]">
-              <div className="h-16 w-16 bg-plum/5 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Landmark className="text-gold" size={28} />
-              </div>
-              <p className="text-xl font-bold text-plum uppercase tracking-widest">{city}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* 6. TEAM SECTION */}
       <section id="team" className="py-24 bg-white">
@@ -390,10 +398,35 @@ const About = () => {
 
       
 
-      {/* FINAL CTA */}
-      <section className="py-20 bg-gold text-center">
-        <h3 className="text-4xl font-black text-plum mb-8 italic uppercase tracking-tighter">For Journeys, For Memories, For You</h3>
-        <Link to="/contact" className="bg-plum text-gold px-12 py-5 rounded-full font-bold uppercase tracking-[0.2em] shadow-2xl hover:bg-black transition-all inline-block">Start Your Story</Link>
+      {/* 7. FINAL CTA STRIP */}
+      <section className="py-16 bg-gold text-center relative overflow-hidden">
+        {/* Decorative subtle text for background depth */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-5 select-none pointer-events-none">
+           <span className="text-[15vw] font-black text-plum whitespace-nowrap uppercase tracking-tighter">
+             Your Story
+           </span>
+        </div>
+      
+        <div className="relative z-10 container mx-auto px-4">
+          <h3 className="text-4xl md:text-5xl font-black text-plum mb-4 italic tracking-tighter uppercase">
+            Ready to Craft <span className="underline decoration-plum/20 underline-offset-8">Your</span> Story?
+          </h3>
+          <p className="text-plum/80 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs mb-8 max-w-2xl mx-auto leading-relaxed">
+            No fixed plans. No copy-paste routes. <br className="hidden md:block" /> 
+            Just a journey designed around your pace and your preferences.
+          </p>
+          
+          <Link 
+            to="/contact" 
+            className="bg-plum text-gold px-12 py-5 rounded-full font-bold uppercase tracking-[0.2em] hover:shadow-2xl hover:scale-105 transition-all inline-block shadow-xl border border-plum/10"
+          >
+            Plan My Personalized Trip
+          </Link>
+          
+          <p className="mt-6 text-plum/60 text-[9px] font-black uppercase tracking-widest">
+            For Journeys. For Memories. For You.
+          </p>
+        </div>
       </section>
 
     </div>
