@@ -174,7 +174,7 @@ const About = () => {
 </section>
 
       {/* 5. TRUST STATS SECTION */}
-<section id="stats" className="py-24 bg-white border-y border-gold/10">
+<section id="stats" className="py-24 bg-cream border-y border-gold/10">
   <div className="container mx-auto px-4">
     <div className="text-center mb-16">
       <h3 className="text-gold font-bold tracking-[0.3em] uppercase mb-4 text-sm">
@@ -309,7 +309,7 @@ const About = () => {
 </section>
 
       {/* 6. TEAM SECTION */}
-      <section id="team" className="py-24 bg-white">
+      <section id="team" className="py-24 bg-cream">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h4 className="text-gold font-bold tracking-[0.3em] uppercase mb-3 text-xs">Leadership</h4>

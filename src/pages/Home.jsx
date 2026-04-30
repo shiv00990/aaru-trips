@@ -188,13 +188,13 @@ const Home = () => {
       </div>
       <div className="md:w-1/2">
         <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-xs md:text-sm">
-          Beyond Fixed Packages
+          OUR HERITAGE & VISION
         </h4>
         <h2 className="text-4xl md:text-5xl font-bold text-plum mb-6 italic leading-tight">
-          Your Trip <span className="text-gold">Adjusts To You</span>, <br/> Not The Other Way Around.
+          Beyond the Map, Into the <span className="text-gold">Soul of Travel.</span>
         </h2>
         <p className="text-gray-500 mb-8 text-lg leading-relaxed">
-          We understand that no two travelers seek the same thing. Whether it’s the silence of the mountains or a slow luxury getaway, we don't believe in "one size fits all." At Aaru, we design personalized journeys crafted around what you truly seek, ensuring every rupee spent translates into a perfectly planned memory.
+         At Aaru Trips, we believe travel is more than just visiting a place—it’s about the peace you find there. We don't just bridge distances; we connect you to heritage, luxury, and yourself. Whether it’s a sacred yatra through India’s heart, a hidden domestic wonder, or a curated international escape, we manage the complexities so you can focus entirely on the journey.
         </p>
         <Link 
           to="/about" 
