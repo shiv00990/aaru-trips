@@ -269,36 +269,42 @@ const Home = () => {
 
   
   <AnimatePresence>
-    {activeVideo && (
+  {activeVideo && (
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-plum/95 backdrop-blur-xl"
+    >
       <motion.div 
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-plum/95 backdrop-blur-xl"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        className="relative w-full max-w-md aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-2xl"
       >
-        <motion.div 
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          className="relative w-full max-w-md aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-2xl"
+        {/* FIXED CLOSE BUTTON */}
+        <button 
+          onClick={() => setActiveVideo(null)} 
+          className="absolute top-4 right-4 z-[210] bg-gold text-plum p-2 rounded-full hover:rotate-90 transition-all flex items-center justify-center"
         >
-          <button 
-            onClick={() => setActiveVideo(null)} 
-            className="absolute top-4 right-4 z-10 bg-gold text-plum p-2 rounded-full hover:rotate-90 transition-all"
-          >
-            <X size="{12}"/>
-          </button>
-          
-          <iframe 
-            src={activeVideo.videoUrl}
-            className="w-full h-full"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-          ></iframe>
-        </motion.div>
+          <X size={20} strokeWidth={3} /> 
+        </button>
+        
+        {/* VIDEO TAG FOR MP4 AUTOPLAY */}
+        <video 
+          key={activeVideo.videoUrl} // Crucial for swapping videos
+          className="w-full h-full object-cover"
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+        >
+          <source src={activeVideo.videoUrl} type="video/mp4" />
+        </video>
       </motion.div>
-    )}
-  </AnimatePresence>
+    </motion.div>
+  )}
+</AnimatePresence>
 </section>
 
 {/* --- CATEGORIZED PACKAGE SWIPER --- */}

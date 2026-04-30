@@ -55,7 +55,7 @@ function App(){
     >
      <span>✉️</span>
       {/* Hide the long email address on mobile, show only "Email" */}
-      <span className="hidden sm:inline">aarutripsandtravels6@gmail.com</span>
+      <span className="hidden sm:inline " >aarutripsandtravels6@gmail.com</span>
       <span className="sm:hidden uppercase">Email Us Now</span>
     </a>
   </div>
