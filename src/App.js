@@ -137,7 +137,7 @@ function App(){
   </a>
 
   <a 
-    href="https://facebook.com/YOUR_USERNAME"
+    href="https://facebook.com/aarutripsandtravels"
     target="_blank" 
     rel="noopener noreferrer"
     className="bg-plum text-cream p-3 rounded-full shadow-lg hover:bg-gold hover:text-plum transition-all hover:scale-110"
