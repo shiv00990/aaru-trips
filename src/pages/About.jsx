@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Shield, Star, Globe, Plane, ChevronDown,ChevronRight, Target, Award, Users, Landmark, Clock, 
-  Mail, MessageCircle, MapPin, Quote 
+  Mail, MessageCircle, MapPin, Quote , User
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -154,18 +154,18 @@ const About = () => {
       {/* MISSION: Focus on Emotion & Experience */}
       <div className="p-12 bg-white/5 backdrop-blur-sm rounded-[3rem] border border-white/10 hover:border-gold/50 transition duration-500 group">
         <Target className="text-gold mb-6 group-hover:scale-110 transition-transform duration-500" size={48} />
-        <h3 className="text-3xl font-bold mb-4 italic text-gold">Our Mission</h3>
+        <h3 className="text-3xl font-bold mb-4 italic text-white">Our Mission</h3>
         <p className="text-cream/70 text-lg leading-relaxed">
-          To craft journeys where the traveler is the priority. We strive to create experiences designed around your pace, ensuring you feel the soul of every destination.
+          To provide safe, soulful, and sophisticated travel experiences. We strive to handle every complex detail, allowing our clients to disconnect from the chaos of life and reconnect with their inner peace.
         </p>
       </div>
 
       {/* GOAL: Focus on Quality & Personalization over fixed numbers */}
       <div className="p-12 bg-white/5 backdrop-blur-sm rounded-[3rem] border border-white/10 hover:border-gold/50 transition duration-500 group">
         <Award className="text-gold mb-6 group-hover:scale-110 transition-transform duration-500" size={48} />
-        <h3 className="text-3xl font-bold mb-4 italic text-gold">Our Commitment</h3>
+        <h3 className="text-3xl font-bold mb-4 italic text-white">Our Vision</h3>
         <p className="text-cream/70 text-lg leading-relaxed">
-         A trust-first approach. We provide a perfectly planned experience for every rupee spent, offering entirely bespoke planning with no hidden costs or rigid rules.
+         To be recognized as India’s most trusted boutique travel partner, celebrated for our integrity, our handpicked hospitality, and our unwavering commitment to the "Aaru" standard of service.
         </p>
       </div>
 
@@ -178,14 +178,11 @@ const About = () => {
   <div className="container mx-auto px-4">
     <div className="text-center mb-16">
       <h3 className="text-gold font-bold tracking-[0.3em] uppercase mb-4 text-sm">
-        Crafted for the Individual
+        Our Credentials
       </h3>
       <h2 className="text-4xl font-bold text-plum italic uppercase">
-        Personalized <span className="text-gold">Expertise</span>
+        Why Thousands <span className="text-gold">Trust Us </span>
       </h2>
-      <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-4 font-bold">
-        Because travel is not about where you go—it's about what you feel.
-      </p>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -309,46 +306,57 @@ const About = () => {
 </section>
 
       {/* 6. TEAM SECTION */}
-      <section id="team" className="py-24 bg-cream">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h4 className="text-gold font-bold tracking-[0.3em] uppercase mb-3 text-xs">Leadership</h4>
-            <h2 className="text-3xl md:text-4xl font-black text-plum italic uppercase tracking-tighter">
-              The Minds Behind <span className="text-gold">Aaru</span>
-            </h2>
-            <div className="w-12 h-1 bg-gold/30 mx-auto mt-4 rounded-full"></div>
-          </div>
+<section id="team" className="py-24 bg-cream">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h4 className="text-gold font-bold tracking-[0.3em] uppercase mb-3 text-xs">Leadership</h4>
+      <h2 className="text-3xl md:text-4xl font-black text-plum italic uppercase tracking-tighter">
+        The Minds Behind <span className="text-gold">Aaru</span>
+      </h2>
+      <div className="w-12 h-1 bg-gold/30 mx-auto mt-4 rounded-full"></div>
+    </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            {[
-              { 
-                name: "Vinodhini Ragupathi", 
-                role: "Founder", 
-                desc: "The visionary architect behind the brand's passion for detail and personalized journeys.",
-                image: vinoImg 
-              },
-              { 
-                name: "Ragupathi Govindan", 
-                role: "CEO", 
-                desc: "Driving growth with a commitment to high-quality service and purpose-led expansion.",
-                image: raguImg 
-              }
-            ].map((member, i) => (
-              <div key={i} className="bg-cream rounded-[2.5rem] overflow-hidden shadow-lg border border-gold/10 flex flex-col items-center">
-                <div className="w-full h-80 relative overflow-hidden bg-plum">
-                   <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
-                   <div className="absolute inset-0 bg-gradient-to-t from-plum/40 via-transparent to-transparent" />
-                </div>
-                <div className="p-8 text-center w-full bg-white">
-                  <h4 className="text-2xl font-bold text-plum mb-1">{member.name}</h4>
-                  <p className="text-gold text-[10px] font-black uppercase tracking-[0.25em] mb-4">{member.role}</p>
-                  <p className="text-gray-500 text-sm leading-relaxed max-w-[250px] mx-auto">{member.desc}</p>
-                </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 max-w-4xl mx-auto">
+      {[
+        { 
+          name: "Vinodhini Ragupathi", 
+          role: "Founder", 
+          desc: "The visionary architect behind the brand's passion for detail and personalized journeys.",
+          image: null // Set to null since we're using the icon
+        },
+        { 
+          name: "Ragupathi Govindan", 
+          role: "CEO", 
+          desc: "Driving growth with a commitment to high-quality service and purpose-led expansion.",
+          image: raguImg 
+        }
+      ].map((member, i) => (
+        <div key={i} className="bg-cream rounded-[2.5rem] overflow-hidden shadow-lg border border-gold/10 flex flex-col items-center">
+          <div className="w-full h-80 relative overflow-hidden bg-plum/10 flex items-center justify-center">
+            
+            {/* CONDITIONAL RENDER: ICON FOR VINODHINI, IMAGE FOR OTHERS */}
+            {member.name === "Vinodhini Ragupathi" ? (
+              <div className="bg-plum/5 w-full h-full flex items-center justify-center">
+                <User size={100} strokeWidth={1} className="text-gold opacity-80" />
               </div>
-            ))}
+            ) : (
+              <>
+                <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-plum/40 via-transparent to-transparent" />
+              </>
+            )}
+            
+          </div>
+          <div className="p-8 text-center w-full bg-white">
+            <h4 className="text-2xl font-bold text-plum mb-1">{member.name}</h4>
+            <p className="text-gold text-[10px] font-black uppercase tracking-[0.25em] mb-4">{member.role}</p>
+            <p className="text-gray-500 text-sm leading-relaxed max-w-[250px] mx-auto">{member.desc}</p>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* 7. TESTIMONIALS SECTION */}
       <section id="testimonials" className="py-24 bg-plum relative overflow-hidden">

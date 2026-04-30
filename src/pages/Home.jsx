@@ -21,6 +21,13 @@ import kasiImg from '../assets/kasi.jpg';
 import panchaboothaImg from '../assets/panchabootha.jpg';
 import ujjanImg from '../assets/ujjan.jpg';
 import andamanImg from '../assets/bali2.jpg'; 
+import thmb1 from '../assets/thmb1.jpg'; 
+import thmb2 from '../assets/thmb2.jpg'; 
+import thmb3 from '../assets/thmb3.jpg'; 
+
+import vid1 from '../assets/videos/video1.mp4';
+import vid2 from '../assets/videos/video2.mp4';
+import vid3 from '../assets/videos/video3.mp4';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -207,104 +214,99 @@ const Home = () => {
   </div>
 </section>
 
-      {/* 5. VIDEO TESTIMONIALS SECTION (UPDATED) */}
+{/* --- reel --- */}
+
       <section className="py-24 bg-cream">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h4 className="text-gold font-bold tracking-[0.3em] uppercase mb-4 text-sm">Real Stories</h4>
-            <h2 className="text-4xl md:text-5xl font-black text-plum italic uppercase">
-              Travelers <span className="text-gold">On Camera</span>
-            </h2>
-            <div className="w-20 h-1 bg-gold mx-auto mt-6"></div>
-          </div>
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h4 className="text-gold font-bold tracking-[0.3em] uppercase mb-4 text-sm">Real Stories</h4>
+      <h2 className="text-4xl md:text-5xl font-black text-plum italic uppercase">
+        Travelers <span className="text-gold">On Camera</span>
+      </h2>
+      <div className="w-20 h-1 bg-gold mx-auto mt-6"></div>
+    </div>
+    
+    <div className="grid md:grid-cols-3 gap-8">
+      {[
+        { 
+          videoUrl: vid1,
+          thumbnail: thmb1
+        },
+        { 
+          videoUrl: vid2,
+          thumbnail: thmb2
+        },
+        { 
+          videoUrl: vid3,
+          thumbnail: thmb3
+        }
+      ].map((video, i) => (
+        <div 
+          key={i} 
+          onClick={() => setActiveVideo(video)} 
+          className="group relative h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white cursor-pointer"
+        >
           
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { 
-                name: "Sathya Narayan", 
-                trip: "Thailand Bliss", 
-                videoUrl: 'https://www.instagram.com/reel/DWeMg9FDZi1/embed',
-                thumbnail: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2078&auto=format&fit=crop" 
-              },
-              { 
-                name: "Disha Dewangan", 
-                trip: "Bali Paradise", 
-                videoUrl: "https://www.instagram.com/reel/DXCKfbzDo2U/embed",
-                thumbnail: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2076&auto=format&fit=crop"
-              },
-              { 
-                name: "Tata Reddy", 
-                trip: "Kasi Yatra", 
-                videoUrl: "https://www.instagram.com/reel/DXRldftk_Fc/embed",
-                thumbnail: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=2076&auto=format&fit=crop"
-              }
-            ].map((video, i) => (
-              <div 
-                key={i} 
-                onClick={() => setActiveVideo(video)} // CLICK TO OPEN
-                className="group relative h-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white cursor-pointer"
-              >
-                <img src={video.thumbnail} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={video.name} />
-                <div className="absolute inset-0 bg-gradient-to-t from-plum via-transparent to-black/20 opacity-80" />
+          <img 
+            src={video.thumbnail} 
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+            alt="Travel Story" 
+          />
+          
+          
+          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500" />
 
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 bg-gold/90 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.6)] group-hover:scale-125 transition-transform">
-                    <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-plum border-b-[12px] border-b-transparent ml-2" />
-                  </div>
-                </div>
-
-                <div className="absolute bottom-8 left-8 right-8">
-                  <div className="flex gap-1 text-gold mb-2">
-                    {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
-                  </div>
-                  <h4 className="text-2xl font-bold text-white leading-none">{video.name}</h4>
-                  <p className="text-gold font-medium text-xs uppercase tracking-widest mt-2">Trip: {video.trip}</p>
-                </div>
-              </div>
-            ))}
+          
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-20 h-20 bg-gold/90 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.6)] group-hover:scale-125 transition-transform">
+              <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-plum border-b-[12px] border-b-transparent ml-2" />
+            </div>
           </div>
         </div>
+      ))}
+    </div>
+  </div>
 
-        {/* POPUP MODAL (NEW) */}
-        <AnimatePresence>
-          {activeVideo && (
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-plum/95 backdrop-blur-xl"
-            >
-              <motion.div 
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                className="relative w-full max-w-md aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-2xl"
-              >
-                <button 
-                  onClick={() => setActiveVideo(null)} 
-                  className="absolute top-4 right-4 z-10 bg-gold text-plum p-2 rounded-full hover:rotate-90 transition-all"
-                >
-                  <X size={24} />
-                </button>
-                <iframe 
-                  src={activeVideo.videoUrl}
-                  className="w-full h-full"
-                  allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </section>
+  
+  <AnimatePresence>
+    {activeVideo && (
+      <motion.div 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }} 
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-plum/95 backdrop-blur-xl"
+      >
+        <motion.div 
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          className="relative w-full max-w-md aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-2xl"
+        >
+          <button 
+            onClick={() => setActiveVideo(null)} 
+            className="absolute top-4 right-4 z-10 bg-gold text-plum p-2 rounded-full hover:rotate-90 transition-all"
+          >
+            <X size="{12}"/>
+          </button>
+          
+          <iframe 
+            src={activeVideo.videoUrl}
+            className="w-full h-full"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          ></iframe>
+        </motion.div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</section>
 
 {/* --- CATEGORIZED PACKAGE SWIPER --- */}
 <section className="py-24 bg-white overflow-hidden w-full">
   <div className="container mx-auto px-4">
     <div className="text-center mb-16">
-      <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-sm">Design Your Journey</h4>
-      <h2 className="text-4xl md:text-5xl font-black text-plum italic uppercase">Crafted <span className="text-gold font-black">Experiences</span></h2>
-      <p className="text-gray-500 mt-4 text-sm font-medium">Because no two journeys should look—or cost—the same.</p>
+      <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-sm">Curated Experiences</h4>
+      <h2 className="text-4xl md:text-5xl font-black text-plum italic uppercase">EXPLORE <span className="text-gold font-black">CATEGORIES</span></h2>
     </div>
 
     {['International', 'Domestic', 'Spiritual'].map((category) => (
