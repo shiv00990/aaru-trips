@@ -4,7 +4,7 @@ import { Phone, Menu, X } from 'lucide-react';
 import { FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollToTop from './pages/ScrollToTop';
-import logocheck from './assets/logocheck2.png';
+import logocheck from './assets/logocheck.png';
 
 // Import your page components
 import Home from './pages/Home';

@@ -369,7 +369,7 @@ const Home = () => {
   </div>
 </section>
 
-      {/* 5. VIDEO TESTIMONIALS SECTION (UPDATED) */}
+{/*
       <section className="py-24 bg-cream">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -427,7 +427,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* POPUP MODAL (NEW) */}
+   
         <AnimatePresence>
           {activeVideo && (
             <motion.div 
@@ -458,7 +458,7 @@ const Home = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </section>
+      </section> */}
 
       {/* 5. TESTIMONIALS SECTION */}
       <section className="py-24 bg-cream">
