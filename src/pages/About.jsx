@@ -98,16 +98,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* 2. STICKY SUB-NAV */}
-      <nav className="bg-white border-b border-gold/10 sticky top-[72px] z-40 shadow-sm hidden md:block">
-        <div className="container mx-auto px-4 flex justify-center gap-16 py-4 text-plum font-bold uppercase text-xs tracking-widest">
-          <a href="#story" className="hover:text-gold transition">The Brand</a>
-          <a href="#mission" className="hover:text-gold transition">What We Do</a>
-          <a href="#team" className="hover:text-gold transition">Leadership</a>
-          <a href="#presence" className="hover:text-gold transition">Presence</a>
-        </div>
-      </nav>
-
       {/* 3. THE ORIGIN STORY */}
 <section id="story" className="py-24 container mx-auto px-4">
   <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -166,7 +156,7 @@ const About = () => {
         <Target className="text-gold mb-6 group-hover:scale-110 transition-transform duration-500" size={48} />
         <h3 className="text-3xl font-bold mb-4 italic text-gold">Our Mission</h3>
         <p className="text-cream/70 text-lg leading-relaxed">
-          To craft journeys where the traveler doesn't have to adjust to a trip—the trip adjusts to them. We strive to create experiences designed around your pace, your preferences, and your story.
+          To craft journeys where the traveler is the priority. We strive to create experiences designed around your pace, ensuring you feel the soul of every destination.
         </p>
       </div>
 
@@ -175,7 +165,7 @@ const About = () => {
         <Award className="text-gold mb-6 group-hover:scale-110 transition-transform duration-500" size={48} />
         <h3 className="text-3xl font-bold mb-4 italic text-gold">Our Commitment</h3>
         <p className="text-cream/70 text-lg leading-relaxed">
-          At Aaru, we don’t believe in "fixed packages." Our goal is to provide a perfectly planned experience for every rupee spent, ensuring a trust-first approach that is transparent, honest, and entirely bespoke.
+         A trust-first approach. We provide a perfectly planned experience for every rupee spent, offering entirely bespoke planning with no hidden costs or rigid rules.
         </p>
       </div>
 

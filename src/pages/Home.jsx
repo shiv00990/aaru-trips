@@ -108,7 +108,7 @@ const Home = () => {
           </h2>
           <p className="max-w-3xl mx-auto text-gray-500 text-lg leading-relaxed font-medium">
             At Aaru Trips, we believe travel is more than just visiting a place—it's about the peace you find there. 
-            Whether it's a spiritual yatra to the heart of India or a luxury escape to a tropical island, 
+            Whether it's a spiritual yatra to the heart of India or a luxury escape to an international destination, 
             we handle every detail so you can focus on the journey.
           </p>
         </div>
@@ -223,19 +223,19 @@ const Home = () => {
               { 
                 name: "Sathya Narayan", 
                 trip: "Thailand Bliss", 
-                videoUrl: "https://www.youtube.com/embed/1ceesqVVqZc?autoplay=1",
+                videoUrl: 'https://www.instagram.com/reel/DWeMg9FDZi1/embed',
                 thumbnail: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2078&auto=format&fit=crop" 
               },
               { 
                 name: "Disha Dewangan", 
                 trip: "Bali Paradise", 
-                videoUrl: "https://www.youtube.com/embed/PJDvoQGcNE0?autoplay=1", 
+                videoUrl: "https://www.instagram.com/reel/DXCKfbzDo2U/embed",
                 thumbnail: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2076&auto=format&fit=crop"
               },
               { 
                 name: "Tata Reddy", 
                 trip: "Kasi Yatra", 
-                videoUrl: "https://www.youtube.com/embed/ofSggv8ZE-k?autoplay=1", 
+                videoUrl: "https://www.instagram.com/reel/DXRldftk_Fc/embed",
                 thumbnail: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=2076&auto=format&fit=crop"
               }
             ].map((video, i) => (

@@ -175,7 +175,7 @@ function App(){
             <div>
               <h4 className="text-gold font-bold mb-4 tracking-widest uppercase">Aaru Trips</h4>
               <p className="text-sm leading-relaxed">
-                Specializing in spiritual yatras and international luxury escapes. Your comfort is our priority at every step of your journey.
+                Specializing in spiritual yatras, domestic wonders, and international luxury escapes. Your comfort is our priority at every step of your journey.
               </p>
             </div>
             
