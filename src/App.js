@@ -128,7 +128,7 @@ function App(){
 <div className="fixed top-1/2 right-4 -translate-y-1/2 z-50 flex flex-col gap-4">
 
   <a 
-    href="https://instagram.com/YOUR_USERNAME"
+    href="https://instagram.com/aarutripsandtravels"
     target="_blank" 
     rel="noopener noreferrer"
     className="bg-plum text-cream p-3 rounded-full shadow-lg hover:bg-gold hover:text-plum transition-all hover:scale-110"
