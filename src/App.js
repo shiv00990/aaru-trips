@@ -191,7 +191,7 @@ function App(){
             <div>
               <h4 className="text-cream font-bold mb-4 uppercase text-xs tracking-widest">Contact Support</h4>
               <a href="mailto:Aarutripsandtravels6@gmail.com" className="block text-sm mb-2 hover:text-gold transition-colors">
-                Aarutripsandtravels6@gmail.com
+                aarutripsandtravels6@gmail.com
               </a>
               <a href="tel:+919087060620" className="block text-sm font-bold text-gold hover:text-cream transition-colors">
                 +91 90870 60620
