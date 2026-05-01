@@ -322,7 +322,7 @@ const About = () => {
           name: "Vinodhini Ragupathi", 
           role: "Founder", 
           desc: "The visionary architect behind the brand's passion for detail and personalized journeys.",
-          image: null // Set to null since we're using the icon
+          image: vinoImg // Set to null since we're using the icon
         },
         { 
           name: "Ragupathi Govindan", 
