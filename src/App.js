@@ -145,14 +145,14 @@ function App(){
     <FaFacebookF size={18} />
   </a>
 
-  <a 
+  {/*<a 
     href="https://linkedin.com/in/YOUR_USERNAME"
     target="_blank" 
     rel="noopener noreferrer"
     className="bg-plum text-cream p-3 rounded-full shadow-lg hover:bg-gold hover:text-plum transition-all hover:scale-110"
   >
     <FaLinkedinIn size={18} />
-  </a>
+  </a>*/}
 
 </div>
 
