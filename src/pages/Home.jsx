@@ -295,8 +295,8 @@ const Home = () => {
           key={activeVideo.videoUrl} // Crucial for swapping videos
           className="w-full h-full object-cover"
           autoPlay 
-          loop 
-          muted 
+          loop
+          muted
           playsInline
         >
           <source src={activeVideo.videoUrl} type="video/mp4" />
