@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {  X, Play } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { X, Play } from 'lucide-react';
 import { 
   Shield, Star, Globe, Plane, ChevronRight, Clock, 
   Mail, MessageCircle, MapPin, Quote 
@@ -24,15 +24,21 @@ import andamanImg from '../assets/bali2.jpg';
 import thmb1 from '../assets/thmb1.jpg'; 
 import thmb2 from '../assets/thmb2.jpg'; 
 import thmb3 from '../assets/thmb3.jpg'; 
+import thmb4 from '../assets/thum4.png'; 
+import thmb5 from '../assets/thumb5.png'; 
+import thmb6 from '../assets/thum6.png';
 
 import vid1 from '../assets/videos/video1.mp4';
 import vid2 from '../assets/videos/video2.mp4';
 import vid3 from '../assets/videos/video3.mp4';
+import vid4 from '../assets/videos/testimonial-1.mp4';
+import vid5 from '../assets/videos/testimonial-2.mp4';
+import vid6 from '../assets/videos/testimonial-3.mp4';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  // NEW: State to track which video is playing in the popup
   const [activeVideo, setActiveVideo] = useState(null);
+  const videoRef = useRef(null);
 
   const slides = [
     { url: hero1, title: "Tropical Paradises", subtitle: "Mauritius & Bali" },
@@ -53,6 +59,7 @@ const Home = () => {
     { title: "Ujjain-Omkareshwar", img: ujjanImg, dur: "3 Days", cat: "Spiritual", price: "₹20,000" }
   ];
 
+  // Slideshow interval timer
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -60,10 +67,33 @@ const Home = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
+  // Safely trigger video playing programmatically after rendering to avoid double audio pipelines
+  useEffect(() => {
+    if (activeVideo && videoRef.current) {
+      videoRef.current.load(); 
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Safe browser play fallback intercepted.", error);
+        });
+      }
+    }
+  }, [activeVideo]);
+
+  // Clear memory, pause audio contextual elements instantly when requested
+  const handleCloseVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.src = ""; 
+      videoRef.current.load();
+    }
+    setActiveVideo(null);
+  };
+
   return (
     <div className="bg-cream overflow-x-hidden">
       
-      {/* HERO FIXED */}
+      {/* 1. HERO SECTION */}
       <section className="relative h-[85vh] md:h-[90vh] bg-plum border-b-8 border-gold">
         <div className="absolute inset-0 overflow-hidden">
           <AnimatePresence mode="wait">
@@ -104,8 +134,6 @@ const Home = () => {
         </div>
       </section>
 
-      
-
       {/* 2. OUR MISSION SECTION */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 text-center">
@@ -122,262 +150,204 @@ const Home = () => {
       </section>
 
       {/* 3. WHY CHOOSE US SECTION */}
-<section className="py-24 bg-cream">
-  <div className="container mx-auto px-4">
-    <div className="text-center mb-16">
-      {/* Updated Headline to reflect the "Different" concept */}
-      <h2 className="text-4xl md:text-5xl font-bold text-plum mb-4 italic uppercase tracking-tighter">
-        What Makes <span className="text-gold">Aaru Different?</span>
-      </h2>
-      <p className="text-gray-500 font-medium uppercase tracking-[0.2em] text-[10px] md:text-xs">
-        We design journeys for people—not packages.
-      </p>
-      <div className="w-24 h-1 bg-gold mx-auto mt-6 rounded-full"></div>
-    </div>
-
-    <div className="grid md:grid-cols-4 gap-8">
-      {[
-        { 
-          icon: <Shield size={40} />, 
-          title: "Trust First", 
-          desc: "No hidden costs or copy-paste plans. A transparent, honest, and reliable travel partner." 
-        },
-        { 
-          icon: <Star size={40} />, 
-          title: "Personalized", 
-          desc: "Every itinerary is built from scratch. Your trip adjusts to you—not the other way around." 
-        },
-        { 
-          icon: <Globe size={40} />, 
-          title: "Emotion Driven", 
-          desc: "We focus on how you want to feel—peaceful, adventurous, or connected." 
-        },
-        { 
-          icon: <Plane size={40} />, 
-          title: "Flexible Luxury", 
-          desc: "From slow retreats to fun-filled adventures, we match the pace of your story." 
-        }
-      ].map((item, i) => (
-        <motion.div 
-          key={i} 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: i * 0.1 }}
-          className="bg-white p-8 rounded-[2rem] shadow-xl text-center border-b-4 border-gold group transition-all duration-300 hover:bg-plum hover:text-cream"
-        >
-          <div className="text-gold flex justify-center mb-6 group-hover:scale-110 transition duration-300">
-            {item.icon}
+      <section className="py-24 bg-cream">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-plum mb-4 italic uppercase tracking-tighter">
+              What Makes <span className="text-gold">Aaru Different?</span>
+            </h2>
+            <p className="text-gray-500 font-medium uppercase tracking-[0.2em] text-[10px] md:text-xs">
+              We design journeys for people—not packages.
+            </p>
+            <div className="w-24 h-1 bg-gold mx-auto mt-6 rounded-full"></div>
           </div>
-          <h4 className="font-bold text-xl mb-4 uppercase tracking-tight">
-            {item.title}
-          </h4>
-          <p className="text-sm opacity-70 leading-relaxed font-medium">
-            {item.desc}
-          </p>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { 
+                icon: <Shield size={40} />, 
+                title: "Trust First", 
+                desc: "No hidden costs or copy-paste plans. A transparent, honest, and reliable travel partner." 
+              },
+              { 
+                icon: <Star size={40} />, 
+                title: "Personalized", 
+                desc: "Every itinerary is built from scratch. Your trip adjusts to you—not the other way around." 
+              },
+              { 
+                icon: <Globe size={40} />, 
+                title: "Emotion Driven", 
+                desc: "We focus on how you want to feel—peaceful, adventurous, or connected." 
+              },
+              { 
+                icon: <Plane size={40} />, 
+                title: "Flexible Luxury", 
+                desc: "From slow retreats to fun-filled adventures, we match the pace of your story." 
+              }
+            ].map((item, i) => (
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white p-8 rounded-[2rem] shadow-xl text-center border-b-4 border-gold group transition-all duration-300 hover:bg-plum hover:text-cream"
+              >
+                <div className="text-gold flex justify-center mb-6 group-hover:scale-110 transition duration-300">
+                  {item.icon}
+                </div>
+                <h4 className="font-bold text-xl mb-4 uppercase tracking-tight">
+                  {item.title}
+                </h4>
+                <p className="text-sm opacity-70 leading-relaxed font-medium">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* 4. ABOUT TEASER SECTION */}
-<section className="py-24 bg-white overflow-hidden">
-  <div className="container mx-auto px-4">
-    <div className="flex flex-col md:flex-row items-center gap-16">
-      <div className="md:w-1/2 relative">
-        <div className="absolute -top-10 -left-10 w-64 h-64 bg-gold/10 rounded-full blur-3xl"></div>
-        <img 
-          src={hero2} 
-          className="rounded-[3rem] shadow-2xl relative z-10 border-8 border-cream" 
-          alt="The Aaru Experience" 
-        />
-      </div>
-      <div className="md:w-1/2">
-        <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-xs md:text-sm">
-          OUR HERITAGE & VISION
-        </h4>
-        <h2 className="text-4xl md:text-5xl font-bold text-plum mb-6 italic leading-tight">
-          Beyond the Map, Into the <span className="text-gold">Soul of Travel.</span>
-        </h2>
-        <p className="text-gray-500 mb-8 text-lg leading-relaxed">
-         At Aaru Trips, we believe travel is more than just visiting a place—it’s about the peace you find there. We don't just bridge distances; we connect you to heritage, luxury, and yourself. Whether it’s a sacred yatra through India’s heart, a hidden domestic wonder, or a curated international escape, we manage the complexities so you can focus entirely on the journey.
-        </p>
-        <Link 
-          to="/about" 
-          className="inline-flex items-center gap-2 text-plum font-bold border-b-2 border-gold pb-1 hover:gap-4 transition-all"
-        >
-          Our story <ChevronRight size={20} />
-        </Link>
-      </div>
-    </div>
-  </div>
-</section>
-
-{/* --- reel --- */}
-
-      <section className="py-24 bg-cream">
-  <div className="container mx-auto px-4">
-    <div className="text-center mb-16">
-      <h4 className="text-gold font-bold tracking-[0.3em] uppercase mb-4 text-sm">Real Stories</h4>
-      <h2 className="text-4xl md:text-5xl font-black text-plum italic uppercase">
-        Travelers <span className="text-gold">On Camera</span>
-      </h2>
-      <div className="w-20 h-1 bg-gold mx-auto mt-6"></div>
-    </div>
-    
-    <div className="grid md:grid-cols-3 gap-8">
-      {[
-        { 
-          videoUrl: vid1,
-          thumbnail: thmb1
-        },
-        { 
-          videoUrl: vid2,
-          thumbnail: thmb2
-        },
-        { 
-          videoUrl: vid3,
-          thumbnail: thmb3
-        }
-      ].map((video, i) => (
-        <div 
-          key={i} 
-          onClick={() => setActiveVideo(video)} 
-          className="group relative h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white cursor-pointer"
-        >
-          
-          <img 
-            src={video.thumbnail} 
-            className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-            alt="Travel Story" 
-          />
-          
-          
-          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500" />
-
-          
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-20 h-20 bg-gold/90 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.6)] group-hover:scale-125 transition-transform">
-              <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-plum border-b-[12px] border-b-transparent ml-2" />
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center gap-16">
+            <div className="md:w-1/2 relative">
+              <div className="absolute -top-10 -left-10 w-64 h-64 bg-gold/10 rounded-full blur-3xl"></div>
+              <img 
+                src={hero2} 
+                className="rounded-[3rem] shadow-2xl relative z-10 border-8 border-cream" 
+                alt="The Aaru Experience" 
+              />
+            </div>
+            <div className="md:w-1/2">
+              <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-xs md:text-sm">
+                OUR HERITAGE & VISION
+              </h4>
+              <h2 className="text-4xl md:text-5xl font-bold text-plum mb-6 italic leading-tight">
+                Beyond the Map, Into the <span className="text-gold">Soul of Travel.</span>
+              </h2>
+              <p className="text-gray-500 mb-8 text-lg leading-relaxed">
+                At Aaru Trips, we believe travel is more than just visiting a place—it’s about the peace you find there. We don't just bridge distances; we connect you to heritage, luxury, and yourself. Whether it’s a sacred yatra through India’s heart, a hidden domestic wonder, or a curated international escape, we manage the complexities so you can focus entirely on the journey.
+              </p>
+              <Link 
+                to="/about" 
+                className="inline-flex items-center gap-2 text-plum font-bold border-b-2 border-gold pb-1 hover:gap-4 transition-all"
+              >
+                Our story <ChevronRight size={20} />
+              </Link>
             </div>
           </div>
         </div>
-      ))}
-    </div>
-  </div>
+      </section>
 
-  
-  <AnimatePresence>
-  {activeVideo && (
-    <motion.div 
-      initial={{ opacity: 0 }} 
-      animate={{ opacity: 1 }} 
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-plum/95 backdrop-blur-xl"
-    >
-      <motion.div 
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        className="relative w-full max-w-md aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-2xl"
-      >
-        {/* FIXED CLOSE BUTTON */}
-        <button 
-          onClick={() => setActiveVideo(null)} 
-          className="absolute top-4 right-4 z-[210] bg-gold text-plum p-2 rounded-full hover:rotate-90 transition-all flex items-center justify-center"
-        >
-          <X size={20} strokeWidth={3} /> 
-        </button>
-        
-        {/* VIDEO TAG FOR MP4 AUTOPLAY */}
-        <video 
-          key={activeVideo.videoUrl} // Crucial for swapping videos
-          className="w-full h-full object-cover"
-          autoPlay 
-          loop
-          muted
-          playsInline
-        >
-          <source src={activeVideo.videoUrl} type="video/mp4" />
-        </video>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
-</section>
-
-{/* --- CATEGORIZED PACKAGE SWIPER --- */}
-<section className="py-24 bg-white overflow-hidden w-full">
-  <div className="container mx-auto px-4">
-    <div className="text-center mb-16">
-      <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-sm">Curated Experiences</h4>
-      <h2 className="text-4xl md:text-5xl font-black text-plum italic uppercase">EXPLORE <span className="text-gold font-black">CATEGORIES</span></h2>
-    </div>
-
-    {['International', 'Domestic', 'Spiritual'].map((category) => (
-      <div key={category} className="mb-20 last:mb-0">
-        <div className="flex justify-between items-end mb-8 px-2 border-l-4 border-gold pl-6">
-          <div>
-            <h3 className="text-2xl font-black text-plum uppercase tracking-tighter">{category}</h3>
-            <p className="text-gray-400 text-sm font-medium uppercase tracking-widest">
-              {category === 'Spiritual' ? 'Soulful Path Seekers' : `Bespoke ${category} Escapes`}
-            </p>
+      {/* 5. REEL SECTION */}
+      <section className="py-24 bg-cream">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h4 className="text-gold font-bold tracking-[0.3em] uppercase mb-4 text-sm">Real Stories</h4>
+            <h2 className="text-4xl md:text-5xl font-black text-plum italic uppercase">
+              Travelers <span className="text-gold">On Camera</span>
+            </h2>
+            <div className="w-20 h-1 bg-gold mx-auto mt-6"></div>
           </div>
-          <div className="hidden md:flex gap-2 text-gold text-xs font-bold uppercase italic opacity-70">
-            Swipe to explore →
-          </div>
-        </div>
-
-        <div className="flex items-stretch overflow-x-auto pb-10 gap-4 no-scrollbar snap-x snap-mandatory px-4 overscroll-x-contain cursor-grab active:cursor-grabbing touch-auto select-none">
-          {allPackages
-            .filter(pkg => pkg.cat === category)
-            .map((pkg, idx) => (
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { videoUrl: vid1, thumbnail: thmb1 },
+              { videoUrl: vid2, thumbnail: thmb2 },
+              { videoUrl: vid3, thumbnail: thmb3 }
+            ].map((video, i) => (
               <div 
-                key={idx} 
-                className="min-w-[280px] md:min-w-[380px] snap-start bg-cream rounded-[2rem] overflow-hidden flex flex-col shadow-lg border border-gold/5 transition-all duration-300 hover:shadow-2xl mb-2"
+                key={i} 
+                onClick={() => setActiveVideo(video)} 
+                className="group relative h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white cursor-pointer"
               >
-                <div className="h-48 md:h-56 relative overflow-hidden shrink-0">
-                  <img 
-                    src={pkg.img} 
-                    className="w-full h-full object-cover pointer-events-none" 
-                    alt={pkg.title} 
-                  />
-                  {/* CHANGED: Removed Price, Added Personalized Badge */}
-                  <div className="absolute bottom-4 left-4 bg-plum text-gold px-4 py-1 rounded-full text-[9px] font-black uppercase italic shadow-xl border border-gold/30">
-                    Bespoke Pricing
+                <img 
+                  src={video.thumbnail} 
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                  alt="Travel Story" 
+                />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 bg-gold/90 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.6)] group-hover:scale-125 transition-transform">
+                    <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-plum border-b-[12px] border-b-transparent ml-2" />
                   </div>
-                </div>
-                
-                <div className="p-6 md:p-8 flex flex-col flex-grow">
-                  <div className="flex items-center gap-2 text-[9px] font-bold text-gold uppercase mb-2 tracking-widest">
-                    <Clock size={12}/> {pkg.dur}
-                  </div>
-                  <h4 className="text-xl md:text-2xl font-bold text-plum mb-4 leading-tight flex-grow">{pkg.title}</h4>
-                  
-                  {/* CHANGED: Refined Link Text */}
-                  <Link 
-                    to="/contact" 
-                    className="flex items-center gap-2 text-plum font-bold text-xs hover:gap-4 transition-all mt-auto"
-                  >
-                    Customize This Trip <ChevronRight size={16} className="text-gold" />
-                  </Link>
                 </div>
               </div>
             ))}
+          </div>
         </div>
+      </section>
 
-        <div className="md:hidden flex justify-center gap-1 mt-[-20px] mb-10">
-           <div className="w-8 h-1 bg-gold rounded-full"></div>
-           <div className="w-2 h-1 bg-gold/30 rounded-full"></div>
-           <div className="w-1 h-1 bg-gold/20 rounded-full"></div>
+      {/* 6. CATEGORIZED PACKAGE SWIPER */}
+      <section className="py-24 bg-white overflow-hidden w-full">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-sm">Curated Experiences</h4>
+            <h2 className="text-4xl md:text-5xl font-black text-plum italic uppercase">EXPLORE <span className="text-gold font-black">CATEGORIES</span></h2>
+          </div>
+
+          {['International', 'Domestic', 'Spiritual'].map((category) => (
+            <div key={category} className="mb-20 last:mb-0">
+              <div className="flex justify-between items-end mb-8 px-2 border-l-4 border-gold pl-6">
+                <div>
+                  <h3 className="text-2xl font-black text-plum uppercase tracking-tighter">{category}</h3>
+                  <p className="text-gray-400 text-sm font-medium uppercase tracking-widest">
+                    {category === 'Spiritual' ? 'Soulful Path Seekers' : `Bespoke ${category} Escapes`}
+                  </p>
+                </div>
+                <div className="hidden md:flex gap-2 text-gold text-xs font-bold uppercase italic opacity-70">
+                  Swipe to explore →
+                </div>
+              </div>
+
+              <div className="flex items-stretch overflow-x-auto pb-10 gap-4 no-scrollbar snap-x snap-mandatory px-4 overscroll-x-contain cursor-grab active:cursor-grabbing touch-auto select-none">
+                {allPackages
+                  .filter(pkg => pkg.cat === category)
+                  .map((pkg, idx) => (
+                    <div 
+                      key={idx} 
+                      className="min-w-[280px] md:min-w-[380px] snap-start bg-cream rounded-[2rem] overflow-hidden flex flex-col shadow-lg border border-gold/5 transition-all duration-300 hover:shadow-2xl mb-2"
+                    >
+                      <div className="h-48 md:h-56 relative overflow-hidden shrink-0">
+                        <img 
+                          src={pkg.img} 
+                          className="w-full h-full object-cover pointer-events-none" 
+                          alt={pkg.title} 
+                        />
+                        <div className="absolute bottom-4 left-4 bg-plum text-gold px-4 py-1 rounded-full text-[9px] font-black uppercase italic shadow-xl border border-gold/30">
+                          Bespoke Pricing
+                        </div>
+                      </div>
+                      
+                      <div className="p-6 md:p-8 flex flex-col flex-grow">
+                        <div className="flex items-center gap-2 text-[9px] font-bold text-gold uppercase mb-2 tracking-widest">
+                          <Clock size={12}/> {pkg.dur}
+                        </div>
+                        <h4 className="text-xl md:text-2xl font-bold text-plum mb-4 leading-tight flex-grow">{pkg.title}</h4>
+                        <Link 
+                          to="/contact" 
+                          className="flex items-center gap-2 text-plum font-bold text-xs hover:gap-4 transition-all mt-auto"
+                        >
+                          Customize This Trip <ChevronRight size={16} className="text-gold" />
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              <div className="md:hidden flex justify-center gap-1 mt-[-20px] mb-10">
+                <div className="w-8 h-1 bg-gold rounded-full"></div>
+                <div className="w-2 h-1 bg-gold/30 rounded-full"></div>
+                <div className="w-1 h-1 bg-gold/20 rounded-full"></div>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-</section>
+      </section>
 
-{/*
+      {/* 7. TESTIMONIAL VIDEO EXPERIENCES */}
       <section className="py-24 bg-cream">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -390,52 +360,32 @@ const Home = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { 
-                name: "Sathya Narayan", 
-                trip: "Thailand Bliss", 
-                videoUrl: "https://www.youtube.com/embed/1ceesqVVqZc?autoplay=1",
-                thumbnail: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2078&auto=format&fit=crop" 
-              },
-              { 
-                name: "Disha Dewangan", 
-                trip: "Bali Paradise", 
-                videoUrl: "https://www.youtube.com/embed/PJDvoQGcNE0?autoplay=1", 
-                thumbnail: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2076&auto=format&fit=crop"
-              },
-              { 
-                name: "Tata Reddy", 
-                trip: "Kasi Yatra", 
-                videoUrl: "https://www.youtube.com/embed/ofSggv8ZE-k?autoplay=1", 
-                thumbnail: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=2076&auto=format&fit=crop"
-              }
+              { videoUrl: vid4, thumbnail: thmb4 },
+              { videoUrl: vid5, thumbnail: thmb5 },
+              { videoUrl: vid6, thumbnail: thmb6 }
             ].map((video, i) => (
               <div 
                 key={i} 
-                onClick={() => setActiveVideo(video)} // CLICK TO OPEN
-                className="group relative h-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white cursor-pointer"
+                onClick={() => setActiveVideo(video)} 
+                className="group relative h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white cursor-pointer"
               >
-                <img src={video.thumbnail} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={video.name} />
-                <div className="absolute inset-0 bg-gradient-to-t from-plum via-transparent to-black/20 opacity-80" />
-
+                <img 
+                  src={video.thumbnail} 
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                  alt="Travel Story" 
+                />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-20 h-20 bg-gold/90 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.6)] group-hover:scale-125 transition-transform">
                     <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-plum border-b-[12px] border-b-transparent ml-2" />
                   </div>
-                </div>
-
-                <div className="absolute bottom-8 left-8 right-8">
-                  <div className="flex gap-1 text-gold mb-2">
-                    {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
-                  </div>
-                  <h4 className="text-2xl font-bold text-white leading-none">{video.name}</h4>
-                  <p className="text-gold font-medium text-xs uppercase tracking-widest mt-2">Trip: {video.trip}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-   
+        {/* OVERLAY PLAY PORTAL CONTAINER */}
         <AnimatePresence>
           {activeVideo && (
             <motion.div 
@@ -450,25 +400,33 @@ const Home = () => {
                 exit={{ scale: 0.9, opacity: 0 }}
                 className="relative w-full max-w-md aspect-[9/16] bg-black rounded-3xl overflow-hidden shadow-2xl"
               >
+                {/* FIXED REMAPPED MEMORY CLOSE FUNCTION */}
                 <button 
-                  onClick={() => setActiveVideo(null)} 
-                  className="absolute top-4 right-4 z-10 bg-gold text-plum p-2 rounded-full hover:rotate-90 transition-all"
+                  onClick={handleCloseVideo} 
+                  className="absolute top-4 right-4 z-[210] bg-gold text-plum p-2 rounded-full hover:rotate-90 transition-all flex items-center justify-center"
                 >
-                  <X size={24} />
+                  <X size={20} strokeWidth={3} /> 
                 </button>
-                <iframe 
-                  src={activeVideo.videoUrl}
-                  className="w-full h-full"
-                  allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                
+                {/* VIDEO ENGINE BIND - CONTROLLED BY REF OVER HOOKS (ECHO ELIMINATED) */}
+                <video 
+                  ref={videoRef}
+                  key={activeVideo.videoUrl} 
+                  className="w-full h-full object-cover"
+                  loop
+                  controls
+                  playsInline
+                >
+                  <source src={activeVideo.videoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
-      </section> */}
+      </section>
 
-      {/* 5. TESTIMONIALS SECTION */}
+      {/* 8. WRITTEN TESTIMONIALS SECTION */}
       <section className="py-24 bg-cream">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -503,84 +461,83 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 6. OUR PRESENCE SECTION */}
-<section className="py-20 bg-plum text-cream relative">
-  <div className="container mx-auto px-4">
-    <div className="grid md:grid-cols-2 gap-16 items-center">
-      <div>
-        <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-xs">Your Travel Partner</h4>
-        <h3 className="text-4xl font-bold mb-6 text-gold italic leading-tight">
-          Southern India’s Roots, <br/>Global Storytelling.
-        </h3>
-        <p className="text-cream/70 mb-8 max-w-md font-medium text-lg">
-          We don’t just offer a service; we become your partner in planning. Based in Chennai and Bangalore, our experts are ready to craft a journey that fits your budget, your pace, and your purpose.
-        </p>
-        <div className="space-y-6">
-          <div className="flex items-center gap-4 text-2xl font-bold hover:text-gold transition">
-            <MapPin className="text-gold" /> Chennai
-          </div>
-          <div className="flex items-center gap-4 text-2xl font-bold hover:text-gold transition">
-            <MapPin className="text-gold" /> Bangalore
+      {/* 9. OUR PRESENCE SECTION */}
+      <section className="py-20 bg-plum text-cream relative">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <h4 className="text-gold font-bold tracking-widest uppercase mb-4 text-xs">Your Travel Partner</h4>
+              <h3 className="text-4xl font-bold mb-6 text-gold italic leading-tight">
+                Southern India’s Roots, <br/>Global Storytelling.
+              </h3>
+              <p className="text-cream/70 mb-8 max-w-md font-medium text-lg">
+                We don’t just offer a service; we become your partner in planning. Based in Chennai and Bangalore, our experts are ready to craft a journey that fits your budget, your pace, and your purpose.
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4 text-2xl font-bold hover:text-gold transition">
+                  <MapPin className="text-gold" /> Chennai
+                </div>
+                <div className="flex items-center gap-4 text-2xl font-bold hover:text-gold transition">
+                  <MapPin className="text-gold" /> Bangalore
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-md p-10 rounded-[3rem] border border-white/10 shadow-2xl">
+              <h4 className="text-2xl font-bold mb-4 text-gold text-center italic">Start the Conversation</h4>
+              <p className="text-center text-cream/60 text-xs uppercase tracking-widest mb-8">
+                Share your details for a bespoke quote
+              </p>
+              <div className="space-y-5">
+                <a href="https://wa.me/919087060620?text=Hi%20Aaru%20Trips%2C%20I%20want%20to%20plan%20a%20custom%20trip!" 
+                   className="flex items-center justify-between bg-[#25D366] text-white p-6 rounded-2xl font-bold hover:scale-105 transition shadow-lg group">
+                  <span className="flex items-center gap-3 text-lg"><MessageCircle /> WhatsApp</span>
+                  <ChevronRight className="group-hover:translate-x-2 transition" />
+                </a>
+                <a href="mailto:Aarutripsandtravels6@gmail.com" 
+                   className="flex items-center justify-between bg-gold text-plum p-6 rounded-2xl font-bold hover:scale-105 transition shadow-lg group">
+                  <span className="flex items-center gap-3 text-lg"><Mail /> Design My Trip</span>
+                  <ChevronRight className="group-hover:translate-x-2 transition" />
+                </a>
+              </div>
+              <p className="text-center mt-6 text-[10px] text-cream/40 uppercase tracking-tighter">
+                *Prices are determined based on your unique preferences
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <div className="bg-white/10 backdrop-blur-md p-10 rounded-[3rem] border border-white/10 shadow-2xl">
-        <h4 className="text-2xl font-bold mb-4 text-gold text-center italic">Start the Conversation</h4>
-        <p className="text-center text-cream/60 text-xs uppercase tracking-widest mb-8">
-          Share your details for a bespoke quote
-        </p>
-        <div className="space-y-5">
-          <a href="https://wa.me/919087060620?text=Hi%20Aaru%20Trips%2C%20I%20want%20to%20plan%20a%20custom%20trip!" 
-             className="flex items-center justify-between bg-[#25D366] text-white p-6 rounded-2xl font-bold hover:scale-105 transition shadow-lg group">
-            <span className="flex items-center gap-3 text-lg"><MessageCircle /> WhatsApp</span>
-            <ChevronRight className="group-hover:translate-x-2 transition" />
-          </a>
-          <a href="mailto:Aarutripsandtravels6@gmail.com" 
-             className="flex items-center justify-between bg-gold text-plum p-6 rounded-2xl font-bold hover:scale-105 transition shadow-lg group">
-            <span className="flex items-center gap-3 text-lg"><Mail /> Design My Trip</span>
-            <ChevronRight className="group-hover:translate-x-2 transition" />
-          </a>
+      </section>
+
+      {/* 10. FINAL CTA STRIP */}
+      <section className="py-16 bg-gold text-center relative overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center opacity-5 select-none pointer-events-none">
+           <span className="text-[15vw] font-black text-plum whitespace-nowrap uppercase tracking-tighter">
+             Your Story
+           </span>
         </div>
-        <p className="text-center mt-6 text-[10px] text-cream/40 uppercase tracking-tighter">
-          *Prices are determined based on your unique preferences
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
 
-{/* 7. FINAL CTA STRIP */}
-<section className="py-16 bg-gold text-center relative overflow-hidden">
-  {/* Decorative subtle text for background depth */}
-  <div className="absolute inset-0 flex items-center justify-center opacity-5 select-none pointer-events-none">
-     <span className="text-[15vw] font-black text-plum whitespace-nowrap uppercase tracking-tighter">
-       Your Story
-     </span>
-  </div>
-
-  <div className="relative z-10 container mx-auto px-4">
-    <h3 className="text-4xl md:text-5xl font-black text-plum mb-4 italic tracking-tighter uppercase">
-      Ready to Craft <span className="underline decoration-plum/20 underline-offset-8">Your</span> Story?
-    </h3>
-    <p className="text-plum/80 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs mb-8 max-w-2xl mx-auto leading-relaxed">
-      No fixed plans. No copy-paste routes. <br className="hidden md:block" /> 
-      Just a journey designed around your pace and your preferences.
-    </p>
-    
-    <Link 
-      to="/contact" 
-      className="bg-plum text-gold px-12 py-5 rounded-full font-bold uppercase tracking-[0.2em] hover:shadow-2xl hover:scale-105 transition-all inline-block shadow-xl border border-plum/10"
-    >
-      Plan My Personalized Trip
-    </Link>
-    
-    <p className="mt-6 text-plum/60 text-[9px] font-black uppercase tracking-widest">
-      For Journeys. For Memories. For You.
-    </p>
-  </div>
-</section>
-      
+        <div className="relative z-10 container mx-auto px-4">
+          <h3 className="text-4xl md:text-5xl font-black text-plum mb-4 italic tracking-tighter uppercase">
+            Ready to Craft <span className="underline decoration-plum/20 underline-offset-8">Your</span> Story?
+          </h3>
+          <p className="text-plum/80 font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs mb-8 max-w-2xl mx-auto leading-relaxed">
+            No fixed plans. No copy-paste routes. <br className="hidden md:block" /> 
+            Just a journey designed around your pace and your preferences.
+          </p>
+          
+          <Link 
+            to="/contact" 
+            className="bg-plum text-gold px-12 py-5 rounded-full font-bold uppercase tracking-[0.2em] hover:shadow-2xl hover:scale-105 transition-all inline-block shadow-xl border border-plum/10"
+          >
+            Plan My Personalized Trip
+          </Link>
+          
+          <p className="mt-6 text-plum/60 text-[9px] font-black uppercase tracking-widest">
+            For Journeys. For Memories. For You.
+          </p>
+        </div>
+      </section>
+        
     </div>
   );
 };
