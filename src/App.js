@@ -146,7 +146,7 @@ function App(){
   </a>
 
   <a 
-    href="https://linkedin.com/in/aaru-trips-and-travels-b10b46407"
+    href="https://www.linkedin.com/company/aaru-trips-and-travels/"
     target="_blank" 
     rel="noopener noreferrer"
     className="bg-plum text-cream p-3 rounded-full shadow-lg hover:bg-gold hover:text-plum transition-all hover:scale-110"
